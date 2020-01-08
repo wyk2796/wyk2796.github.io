@@ -27,7 +27,7 @@ Syntax highlighted code block
 
 [Link](url) and ![Image](src)
 ```
-[abcdefg](https://github.com/wyk2796/yukai.github.io/master/jer.md)
+[abcdefg](https://github.com/wyk2796/yukai.github.io/jer.md)
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Jekyll Themes
