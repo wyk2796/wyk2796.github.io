@@ -21,13 +21,13 @@ Syntax highlighted code block
 1. Numbered
 2. List
 
-[abcdefg](https://github.com/wyk2796/yukai.github.io/edit/master/jer.md)
+
 
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
 ```
-
+[abcdefg](https://github.com/wyk2796/yukai.github.io/edit/master/jer.md)
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Jekyll Themes
