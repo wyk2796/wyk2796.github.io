@@ -20,19 +20,19 @@
 <link rel="icon" type="image/png" href="/assets/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/assets/favicons/android-192x192.png"sizes="192x192">
 
-<title>A Nested Page</title>
-<meta property="og:title" content="A Nested Page" />
-<meta property="og:description" content="An example of a a nested page in a subfolder." />
+<title>Policy gradients and actor critic</title>
+<meta property="og:title" content="Policy gradients and actor critic" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:4000" />
 <meta property="og:site_name" content="http://localhost:4000" />
 
-<meta itemprop="name" content="A Nested Page">
-<meta itemprop="description" content="An example of a a nested page in a subfolder.">
+<meta itemprop="name" content="Policy gradients and actor critic">
+<meta itemprop="description" content="">
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="A Nested Page"/>
-<meta name="twitter:description" content="An example of a a nested page in a subfolder."/>
+<meta name="twitter:title" content="Policy gradients and actor critic"/>
+<meta name="twitter:description" content=""/>
 
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/palette.css">
@@ -128,8 +128,8 @@ $(document).ready(function() {
           </div>
           <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
               <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-                  <a href="/edit/master/_docs/subfolder/example-page.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="/issues/new?labels=question&title=Question:&body=Question on: /tree/master/_docs/subfolder/example-page.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+                  <a href="/edit/master/_posts/2019-05-17-Policy Gradients and Actor Critic.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="/issues/new?labels=question&title=Question:&body=Question on: /tree/master/_posts/2019-05-17-Policy Gradients and Actor Critic.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 <!-- this will parse through the header fields and add a button to open
      an issue / ask a question on Github. The editable field should be in
@@ -146,15 +146,280 @@ $(document).ready(function() {
             <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
 	      <ol class="breadcrumb spb-1">
                 <li class="breadcrumb-item active" aria-current="page">
-	          <a href="/docs/subfolder/example-page">A Nested Page</a>
+	          <a href="/2019/Policy-Gradients-and-Actor-Critic/">Policy gradients and actor critic</a>
                 </li>
 	      </ol>
            </nav>
            <div class="td-content">
-	      <h1 id="a-nested-page">A Nested Page</h1>
+	      <h1 style="margin-bottom:0px">Policy gradients and actor critic</h1>
 
-<p>This is an example of a page that doesn’t have a permalink defined, and
-is not included in the table of contents (<code class="language-plaintext highlighter-rouge">_data/toc.yml</code>).</p>
+<span class="post-date" style="font-style: italic;">May 17, 2019</span>
+<h3 id="general-overview">General Overview</h3>
+<ul>
+  <li>Model-based RL:<br />
+ + ‘Easy’ to learn a model (supervised learning) <br />
+ + Learns ‘all there is to know’ from the data<br />
+ - Objective capture irrelevant information<br />
+ - May focus compute/capacity on irrelevant detail<br />
+ - Computing policy (planning) is non-trivial and can be computationally expensive</li>
+  <li>Valued-based RL:<br />
+ + Closer to true objective
+ + Fairly well-understood — somewhat similar to regression<br />
+ - Still not the true objective — may still focus capacity on less-important details</li>
+  <li>Policy-based RL:<br />
+ + Right objective!
+ - Ignores other learnable knowledge (potentially not the most efficient use of data)</li>
+</ul>
+
+<!--more-->
+<hr />
+<h3 id="advantage-of-policy-based-rl">Advantage of Policy-Based RL</h3>
+<p>Advantages:</p>
+<ul>
+  <li>Good convergence properties</li>
+  <li>Easily extended to high-dimensional or continuous action spaces</li>
+  <li>Can learn <strong>stochastic</strong> policies</li>
+  <li>Sometimes Policies are <strong>simple</strong> while values and models are complex
+    <ul>
+      <li>E.g., rich domain, but optimal is always go left.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Disadvantages:</p>
+<ul>
+  <li>Susceptible to local optimal (expecially with non-linear FA)</li>
+  <li>Obtained knowledge is specific, does not always generalize well</li>
+  <li>Ignores a lot of information in the data (when used in isolation)</li>
+</ul>
+
+<hr />
+<h3 id="policy-objective-functions">Policy Objective Functions</h3>
+<ul>
+  <li>Goal: given policy $\pi_{\theta}(s,a)$ with patameters $\theta$, find best $\theta$</li>
+  <li>But how do we measure the quality of a policy $\pi_{\theta}$?</li>
+  <li>In episodic environments we can use the <strong>start value</strong><br />
+<script type="math/tex">J_{1}(\theta)=v_{\pi_{\theta}}(s_{1})</script></li>
+  <li>In continuing environments we can use the average value<br />
+<script type="math/tex">J_{avV}(\theta)=\sum_{s}\mu_{\pi_{\theta}}(s)v_{\pi_{\theta}}(s)</script><br />
+where $\mu_{\pi}(s)=p(S_{t}=s|\pi)$ is the probability of being in state s in the long run
+Think of is as the ratio of time spent in $s$ under policy $\pi$</li>
+  <li>Or the average reward per time-step<br />
+<script type="math/tex">J_{avR}(\theta)=\sum_{s}\mu_{\pi_{\theta}}(s)\sum_{a}\pi_{\theta}(s,a)\sum_{r}p(r|s,a)r</script></li>
+</ul>
+
+<hr />
+<h3 id="gradients-on-parameterized-policies">Gradients on Parameterized Policies</h3>
+<ul>
+  <li>We need to compute an estimate of the policy gradient</li>
+  <li>Assume policy $\pi_{\theta}$ is differentiable almost everywhere
+    <ul>
+      <li>E.g., $\pi_{\theta}$is a linear function of the agent state, or a neural network</li>
+      <li>Or we could have a parameterized class of controllers</li>
+    </ul>
+  </li>
+  <li>Goal is to compute<br />
+<script type="math/tex">\nabla_{\theta}J(\theta)=\nabla\mathbb{E}_{d}[v_{\pi_{\theta}}(s)]</script></li>
+  <li>We will use Monte Carlo samples to compute this gradient</li>
+  <li>So, how does $\mathbb{E}<em>{d}[v</em>{\pi_{\theta}}(S)]$ depend on $\theta$?</li>
+</ul>
+
+<hr />
+<h3 id="policy-gradient-theorem">Policy Gradient Theorem</h3>
+
+<ul>
+  <li>The policy gradient approach also applies to (multi-step) MDPs</li>
+  <li>Replaces instantaneous reward R with long-term value $q_{\pi}(s,a)$</li>
+  <li>Policy gradient theorem applies to start state objective, average reward and average value objective</li>
+</ul>
+
+<p><strong>Theorem</strong>
+For any differentiable policy $\pi_{\theta}(s,a)$, for any of the policy objective functions $J=J_{1}, J_{avR}, or 1\frac{1}{1-\gamma}J_{avV}$, the policy gradient is<br />
+<script type="math/tex">\nabla_{\theta}J(\theta) = \mathbb{E}[q_{\pi_{\theta}}(S,A)\nabla_{\theta}\log\pi_{\theta}(A|S)]</script><br />
+Expectation is over both states and actions</p>
+
+<hr />
+<h3 id="policy-gradients-on-trajectories-derivation">Policy Gradients on trajectories: Derivation</h3>
+<ul>
+  <li>Consider trajectory $\zeta=S_0,A_0,R_0,S_1,A_1,R_1,S_2,\ldots$ with return $G(\zeta)$<br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+& \nabla_\theta J_\theta(\pi)=\nabla_\theta\mathbb{E}[G(\zeta)]=\mathbb{E}[G(\zeta)\nabla_\theta\log p(\zeta)]\qquad \text{(score function trick)} \\
+& \nabla_\theta\log p(\zeta) \\
+& =\nabla_\theta\log\Big[p(S_0)\pi(A_0|S_0)p(S_1|S_0,A_0)\pi(A_1|S_1)\cdots)\Big] \\
+& =\nabla_\theta\Big[\log p(S_0)+\log\pi(A_0|S_0)+\log p(S_1|S_0,A_0)+\log\pi(A_1|S_1)+\cdots)\Big] \\
+& =\nabla_\theta\Big[\log\pi(A_0|S_0)+\log\pi(A_1|S_1)+\cdots\Big] \\
+\textbf{So:} \\
+& \nabla_\theta J_\theta(\pi)=\mathbb{E}\Big[G(\zeta)\nabla_\theta\sum_{t=0}\log\pi(A _t|S_t)\Big] = \mathbb{E}\Big[\Big(\sum_{t=0}R_{t+1}\Big)\Big(\nabla_\theta\sum_{t=0}\log\pi(A_t|S_t)\Big)\Big]
+\end{aligned} %]]></script></li>
+</ul>
+
+<hr />
+<h3 id="policy-gradients-on-trajectories-reduce-variance">Policy gradients on trajectories: reduce variance</h3>
+<ul>
+  <li>Note that, in general <br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+\mathbb{E}[b\nabla_{\theta}\log\pi(A_{t}|S_{t})]&=\mathbb{E}\Bigg[\sum_{a}\pi(a|S_{t})b\nabla_{\theta}\log\pi(a|S_{t})\Bigg] \\
+&=\mathbb{E}\Bigg[b\nabla_{\theta}\sum_{a}\pi(a|S_{t})\Bigg] \\
+&=\mathbb{b}[b\nabla_{\theta}1] \\
+&=0
+\end{aligned} %]]></script></li>
+  <li>The sum of probability distribution is 1</li>
+  <li>This holds only if $b$ does not depend on the action (though it can depend on the state)</li>
+  <li>
+    <p>Implies we can subtract a <strong>baseline</strong> to reduce variance</p>
+  </li>
+  <li>
+    <p>Consider trajactory $\zeta=S_{0},A_{0},R_{0},S_{1},A_{1},R_{1},S_{2},\ldots$ with return $G{\zeta}$<br />
+<script type="math/tex">\nabla_{\theta}J_{\theta}(\pi)=\mathbb{E}\Bigg[\Bigg(\sum_{t=0}R_{t+1}\Bigg)\Bigg(\nabla_{\theta}\sum_{t=0}log\pi(A_{t}|S_{t})\Bigg)\Bigg]</script>  <br />
+but $\sum_{t=0}^{k}R_{t+1}$ does not depend on actions $A_{k+1}, A_{k+2},\cdots,$so<br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+&=\mathbb{E}\Bigg[\sum_{t=0}\nabla_{\theta}\log\pi(A_{t}|S_{t})\sum_{i=0}R_{i+1}\Bigg] \\
+&=\mathbb{E}\Bigg[\sum_{t=0}\nabla_{\theta}\log\pi(A_{t}|S_{t})\sum_{i=\color{red}{t}}R_{i+1}\Bigg] \\
+&=\mathbb{E}\Bigg[\sum_{t=0}\nabla_{\theta}\log\pi(A_{t}|S_{t})q_{\pi}(S_{t},A_{t})\Bigg]
+\end{aligned} %]]></script></p>
+  </li>
+  <li>
+    <p>A good baseline is $v_{\pi}(S_{t})$<br />
+<script type="math/tex">\nabla_{\theta}J_{\theta}(\pi)=\mathbb{E}\Bigg[\sum_{t=0}\nabla_{\theta}\log\pi(A_{t}|S_{t})q_{\pi}(S_{t},A_{t})-v_{\pi}(S_{t})\Bigg]</script></p>
+  </li>
+  <li>Typically, we estimate $v_{w}(s)$ explicitly, and sample<br />
+<script type="math/tex">q_{\pi}(S_{t},A_{t})\approx G_{t}^{(n)}</script></li>
+  <li>For instance, $G_{t}^{(1)}=R_{t+1}+ \gamma v_{w}(S_{s+1})$</li>
+</ul>
+
+<hr />
+<h3 id="estimating-the-action-value-function">Estimating the Action-Value Function</h3>
+<ul>
+  <li>The Critic is solving a familiar problem: policy evaluation</li>
+  <li>What is the value of policy $\pi_{\theta}$ for current parameters $\pi$</li>
+</ul>
+
+<hr />
+<h3 id="actor-critic">Actor-Critic</h3>
+<p><strong>Critic</strong> Update parameters $w$ of $v_{w}$ by n-step TD (e.g., $n=1$)
+<strong>Actor</strong> Update $\theta$ by policy gradient</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+& \textbf{function}\space\text{ADVANTAGE ACTOR CRITIC} \\
+& \qquad\text{Initialise}\quad s, \theta \\
+& \qquad\textbf{for}\quad t=0,1,2,\ldots\space \textbf{do} \\
+& \qquad\qquad \text{Sample}\space A_t \sim \pi_\theta(S_t) \\
+& \qquad\qquad \text{Sample}\space R_{t+1}\space\text{and}\space S_{t+1} \\
+& \qquad\qquad \delta_t=R_{t+1}+\gamma v_w(S_{t+1})-v_w(S_t) \qquad \text{[one-step TD-error, or \color{red}{advantage}]}\\
+& \qquad\qquad w\leftarrow w+\beta\delta_t\nabla_wv_w(S_t) \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\quad \text{[TD(0)]} \\
+& \qquad\qquad \theta\leftarrow\theta+\alpha\delta_t\nabla_\theta\log\pi_\theta(A_t|S_t) \qquad\qquad\qquad\quad\space\space\thinspace\text{[Policy gradient update]}\\
+& \qquad\textbf{end for} \\
+& \textbf{end function}
+\end{aligned} %]]></script>
+
+<hr />
+<h3 id="full-advantage-actor-critic-agent">Full Advantage Actor Critic Agent</h3>
+<ul>
+  <li>Adventage actor critic include
+    <ul>
+      <li>A <strong>representation</strong> (e.g., LSTM): $(S_{t-1}, O_t)\rightarrow S_t$</li>
+      <li>A <strong>network</strong> $v_w: \space S\rightarrow v$</li>
+      <li>A <strong>network</strong> $\pi_\theta:\space S\rightarrow \pi$</li>
+      <li>Copies/variants $\pi^m$ of $\pi_\theta$ to use as <strong>policies</strong>: $S_t^m\rightarrow A_t^m$</li>
+      <li>A n-step TD <strong>loss</strong> on $v_w$<br />
+<script type="math/tex">I(w)=\frac{1}{2}\Big(G_t^{(n)}-v_w(S_t)\Big)^2</script><br />
+where $G_t^{(n)} = R_{t+1}+\gamma R_{t+2}+\ldots+\gamma^{n-1}v_w(S_{t+n})$</li>
+      <li>A n-step REINFORCE <strong>loss</strong> on $\pi_\theta$<br />
+<script type="math/tex">I(\theta)=\Big[G_t^{(n)}-v_w(S_t)\Big]\log\pi_\theta(A_t|S_t)</script></li>
+      <li><strong>Optimizers</strong> to minimize the losses</li>
+    </ul>
+  </li>
+  <li>Also know as A2C, or A3C (when combined with asynchronous parameter update)</li>
+</ul>
+
+<hr />
+<h3 id="bias-in-actor-critic-algorithm">Bias in Actor-Critic Algorithm</h3>
+<ul>
+  <li>Approximating the policy gradient introduce bias</li>
+  <li>A biased policy gradient may not find the right solution</li>
+  <li>Full return: high variance</li>
+  <li>One-step TD-error: high bias</li>
+  <li>n-step TD-error: useful middle ground<br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+\delta_t^{(n)} &= G_t^{(n)} - v_w(S_t) \\
+&=\underbrace{R_{t+1} + \gamma R_{t+2}+ \cdots + \gamma^{n-1}R_{t+n} + \gamma^{n}v_w(S_t+n)}_{=G_t^{(n)}}-v_w(S_t)
+\end{aligned} %]]></script></li>
+  <li>It is really important to use close-to on-policy targets</li>
+  <li>If needed, use importance sampling to correct<br />
+<script type="math/tex">G_t^{(n),\rho} = \frac{\pi_\theta(A_t|S_t)}{b(A_t|S_t)}\Big(R_{t+1}=\gamma_{t+1}^{(n-1),\rho}\Big)</script><br />
+with<br />
+<script type="math/tex">G_t^{(0),\rho} =v_w(S_t) \approx v_\pi(S_t)</script></li>
+</ul>
+
+<hr />
+<h4 id="large-colordarklambdatextbf-returns">$\Large \color{dark}{\lambda}\textbf{-returns}$</h4>
+<ul>
+  <li>We can write a multi-step return recursively<br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+& G_t^{(n)}=R_{t+1}+\gamma G_{t+1}^{n-1} \\
+& G_t^{(0)} = v_w(S_t) \approx v_\pi(S_t)
+\end{aligned} %]]></script></li>
+  <li>This is equivalent to <br />
+<script type="math/tex">G_t^\lambda = R_{t+1} + \gamma(1- \lambda_{t+1})v_w(S_{t+1}) + \gamma\lambda_{t+1}G_{t+1}^\lambda</script></li>
+  <li>We can generalize to $\lambda_t \in [0,1]$; this is called a $\lambda-\text{return}$</li>
+  <li>It can be interpreted as a <strong>mixture of n-step returns</strong></li>
+  <li>One way to correct for off-policy returns: bootstrap (set $\lambda=0$) whenever the policies differ</li>
+  <li>Can be used for policy-gradient and value prediction</li>
+</ul>
+
+<hr />
+<h3 id="trust-region-policy-optimization">Trust Region Policy Optimization</h3>
+<ul>
+  <li>Many extensions and variants exist</li>
+  <li>Important: be careful with update: a bad policy leads to bad data</li>
+  <li>This is different from supervised learning (where learning and data are independent)</li>
+  <li>One solution: regularise policy to not change too much</li>
+</ul>
+
+<hr />
+<h3 id="increasing-robustness-with-trust-regions">Increasing Robustness with Trust Regions</h3>
+<ul>
+  <li>One way to prevent instability is to <strong>regularise</strong></li>
+  <li>A popular method is to <strong>limit the difference between subsequent policies</strong></li>
+  <li>For instance, use the Kullbeck-Leibler divergence:<br />
+<script type="math/tex">KL(\pi_{old}\|\pi_\theta)=\mathbb{E}\Big[\int\pi_{old}(a|S)\log\frac{\pi_\theta(a|S)}{\pi_{old}(a|S)}da\Big]</script><br />
+(a divergence is like a distance — but between distributions)</li>
+  <li>Then maximise $J(\theta)-\eta KL(\pi_{old}|\pi_\theta)$, for some small $\eta$</li>
+  <li>It can also help to use large batches \
+ c.f <strong>TRPO</strong> (Schulman et al. 2015) and <strong>PPO</strong> (Abbeel &amp; Schulman 2016)</li>
+</ul>
+
+<hr />
+<h3 id="gaussian-policy">Gaussian POlicy</h3>
+<ul>
+  <li>In conitnuous action spaces, a Gaussian policy is common</li>
+  <li>E.g., mean is some function of state $\mu(s)$</li>
+  <li>For simplicity, lets consider fixed variance of $\sigma^2$ (can be parameterized as well, instead)</li>
+  <li>Policy is Gaussian, $a \sim \mathcal{N}(\mu(s),\sigma^2)$</li>
+  <li>The gradient of the log of the policy is then<br />
+<script type="math/tex">\nabla_\theta\log\pi_\theta(s,a)=\frac{a-\mu(s)}{\sigma_2}\nabla\mu(s)</script></li>
+  <li>This can be used, for instance, in REINFORCE / advandage actor critic</li>
+</ul>
+
+<hr />
+<h3 id="continuous-actor-critic-learning-automaton-cacla">Continuous Actor-Critic Learning Automaton （Cacla）</h3>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+& \blacktriangleright a_t=Actor_\theta(S_t)\qquad  &\text{(get current (continuous) action proposal)}&\\
+& \blacktriangleright A_t\sim\pi(\cdot|S_t,a_t)\space(e.g.,A_t \sim \mathcal{N}P(a_t, \sum) \qquad &\text{(explore)}&\\
+& \blacktriangleright \delta_t=R_{t+1}+\gamma v_w(S_{t})\qquad &\text{(compute TD error)} &\\
+& \blacktriangleright \text{Update}\space v_w{S_t}\space(\text{e.g.,using TD}) \qquad&\text{(policy evaluation)} &\\
+& \blacktriangleright \text{If}\space \delta_t > 0, \text{update Actor}_\theta(S_t)\space\text{towards}\space A_t \qquad&\text{(policy improvement)}&\\
+& \blacktriangleright \text{if}\space \delta_t \leqslant 0, \text{do not update Actor}_\theta \qquad&\text{} & 
+\end{aligned} %]]></script>
+
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

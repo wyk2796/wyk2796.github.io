@@ -20,19 +20,19 @@
 <link rel="icon" type="image/png" href="/assets/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/assets/favicons/android-192x192.png"sizes="192x192">
 
-<title>A Nested Page</title>
-<meta property="og:title" content="A Nested Page" />
-<meta property="og:description" content="An example of a a nested page in a subfolder." />
+<title>Markov descision processess</title>
+<meta property="og:title" content="Markov descision processess" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:4000" />
 <meta property="og:site_name" content="http://localhost:4000" />
 
-<meta itemprop="name" content="A Nested Page">
-<meta itemprop="description" content="An example of a a nested page in a subfolder.">
+<meta itemprop="name" content="Markov descision processess">
+<meta itemprop="description" content="">
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="A Nested Page"/>
-<meta name="twitter:description" content="An example of a a nested page in a subfolder."/>
+<meta name="twitter:title" content="Markov descision processess"/>
+<meta name="twitter:description" content=""/>
 
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/palette.css">
@@ -128,8 +128,8 @@ $(document).ready(function() {
           </div>
           <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
               <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-                  <a href="/edit/master/_docs/subfolder/example-page.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="/issues/new?labels=question&title=Question:&body=Question on: /tree/master/_docs/subfolder/example-page.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+                  <a href="/edit/master/_posts/2019-05-03-Markov Descision Processess.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="/issues/new?labels=question&title=Question:&body=Question on: /tree/master/_posts/2019-05-03-Markov Descision Processess.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 <!-- this will parse through the header fields and add a button to open
      an issue / ask a question on Github. The editable field should be in
@@ -146,15 +146,138 @@ $(document).ready(function() {
             <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
 	      <ol class="breadcrumb spb-1">
                 <li class="breadcrumb-item active" aria-current="page">
-	          <a href="/docs/subfolder/example-page">A Nested Page</a>
+	          <a href="/2019/Markov-Descision-Processess/">Markov descision processess</a>
                 </li>
 	      </ol>
            </nav>
            <div class="td-content">
-	      <h1 id="a-nested-page">A Nested Page</h1>
+	      <h1 style="margin-bottom:0px">Markov descision processess</h1>
 
-<p>This is an example of a page that doesn’t have a permalink defined, and
-is not included in the table of contents (<code class="language-plaintext highlighter-rouge">_data/toc.yml</code>).</p>
+<span class="post-date" style="font-style: italic;">May 03, 2019</span>
+<h3 id="introduction-to-mdps">Introduction to MDPs</h3>
+<hr />
+<ol>
+  <li><strong>Markov decision processes (MDPs)</strong> formally describe an environment.</li>
+  <li>Assume the environment is fully observable the current: the current observations contains relevant information.</li>
+  <li>Almost all RL problems can be formalized as MDPs, e.g,
+    <ul>
+      <li>Optimal control primarily deals with continuous MDPs</li>
+      <li>Partially observable problems can be converted into MDPs</li>
+      <li>Bandits are MDPs with one state</li>
+    </ul>
+  </li>
+</ol>
+
+<!--more-->
+<hr />
+<h3 id="definition">Definition</h3>
+<p>A state $s$ has the <strong>Markvo</strong> property when for states $\forall s^{‘}\in S$ and all rewards $r \in \mathbb{R}$ 
+<script type="math/tex">p(R_{t+1}=r,S_{t+1}=s^{'}|S_{t}=s)= 
+p(R_{t+1}=r,S_{t+1}=s^{'}|S_{1},...,S_{t},S_{t-1}=s)</script><br />
+for all possible histories $S_{1},…,S_{t-1}$</p>
+
+<ul>
+  <li>The state capture all relevent information from history</li>
+  <li>Once the state is know, the history may be throw away</li>
+  <li>The state is a sufficient statistic of the past</li>
+</ul>
+
+<h3 id="return">Return</h3>
+<hr />
+<ul>
+  <li>
+    <p>Acting in a MDP results in <strong>return</strong> $G_{t}$: total discounted reward from time-step $t$<br />
+  <script type="math/tex">G_{t}=R_{t+1}+\gamma R_{t+2}+ ... = \sum_{k=0}^{\infty}\gamma_{k}R_{t+k+1}</script></p>
+  </li>
+  <li>This is a random variables that depends on <strong>MDP</strong> and <strong>policy</strong></li>
+  <li>The <strong>discount</strong> $\gamma\in[0,1]$ is the present value of future rewards
+    <ul>
+      <li>The marginal value of receiving reward $R$ after $k+1$time-steps is $\gamma^{k}R$</li>
+      <li>For $\gamma&lt;1$, immediate rewards are more important than delayed rewards</li>
+      <li>$\gamma$ close to 0 leads to “myopic” evaluation</li>
+      <li>$\gamma$ close to 1 leads to “far-sighted” evaluation</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="value-function">Value Function</h3>
+<hr />
+<ul>
+  <li>The value function $v(s)$ gives the long-term value of state $s$ <br />
+  <script type="math/tex">v_{\pi}(s)=\mathbb{E}[G_{t}|S_{t}=s,\pi]</script></li>
+  <li>It can be defined recursively<br />
+  <script type="math/tex">% <![CDATA[
+\begin{aligned}
+  v_{\pi}(s) &=\mathbb{E}[R_{t+1}+\gamma G_{t+1}|S_{t}, \pi] \\
+  &=\mathbb{E}[R_{t+1}+\gamma v_{\pi}(S_{t+1})|S_{t}=s, A_{t}\sim\pi(S_{t})] \\
+  &=\sum_{a}\pi(a|s)\sum_{r}\sum_{s^{'}}p(r,s^{'}|s,a)(r+\gamma v_{\pi}(s^{'}))
+  \end{aligned} %]]></script></li>
+  <li>The final step writes out the expectation explicitly</li>
+</ul>
+
+<h3 id="action-values">Action Values</h3>
+<hr />
+<ul>
+  <li>We can define state-action values  <br />
+  <script type="math/tex">q_{\pi}(s,a)=\mathbb{E}[G_{t}|S_{t}=s,A_{t}=a,\pi]</script></li>
+  <li>
+    <p>This implies: the value of a state is equal to the weighted sum of the state action value by definition<br />
+  <script type="math/tex">% <![CDATA[
+\begin{aligned}
+  q_{\pi}(s,a)&=\mathbb{E}[R_{t+1}+\gamma v_{\pi}(S_{t+1})|S_{t}=s, A_{t}=a] \\
+  &=\mathbb{E}[R_{t+1}+\gamma q_{\pi}(S_{t+1},A_{t+1})|S_{t}=s,A_{t}=a] \\
+  &=\sum_{r}\sum_{s^{'}}p(r,s^{'}|s,a)\Big(r+\gamma\sum_{a^{'}}\pi(a^{'},s^{'})q_{\pi}(s^{'},a^{'})\Big)
+  \end{aligned} %]]></script></p>
+  </li>
+  <li>Note that <br />
+  <script type="math/tex">% <![CDATA[
+\begin{aligned}
+  v_{\pi}(s) & =  \sum_{a}\pi(a|s)q_{\pi}(s,a) \\ 
+  & = \mathbb{E}[q_{\pi}(S_{t},A_{t})|S_{t}=s,\pi], \forall s
+  \end{aligned} %]]></script></li>
+</ul>
+
+<hr />
+<h4 id="tips">Tips</h4>
+
+<ul>
+  <li>Estimating $v_{\pi}$ or $q_{\pi}$ is called <strong>policy evaluation</strong> or, simply, <strong>prediction</strong></li>
+  <li>Estimating $v_{*}\space \text{or}\space  q_{*}$ is sometimes called <strong>control</strong>, because these can be used for <strong>policy optimizaton</strong>.</li>
+</ul>
+
+<hr />
+<h3 id="bellman-equation">Bellman Equation</h3>
+<p>Four Bellman equations:<br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+v_{\pi}(s) &=\mathbb{E}[R_{t+1}+\gamma v_{\pi}(S_{t+1})|S_{t}=s,A_{t}\sim\pi(S_{t})] \\
+v_{*}(s) &=\max_{a}\mathbb{E}[R_{t+1}+\gamma v_{*}(S_{t+1})|S_{t}=s,A_{t}=a] \\
+q_{\pi}(s,a) &=\mathbb{E}[R_{t+1}+\gamma q_{\pi}(S_{t+1}, A_{t+1})|S_{t}=s,A_{t}=a] \\
+q_{*}(s,a) &=\mathbb{E}[R_{t+1}+\gamma \max_{a^{'}} q_{*}(S_{t+1},a^{'})|S_{t}=s,A_{t}=a]
+\end{aligned} %]]></script></p>
+
+<hr />
+<p>### Policy Evaluate</p>
+
+<ul>
+  <li>We start by discussing how to estimate<br />
+ <script type="math/tex">v_{\pi}(s)=\mathbb[R_{t+1}=\gamma v_{\pi}(S_{t+1})|s,\pi]</script></li>
+  <li>Idea: turn this equality into an update</li>
+  <li>First, initialize $v_{0}$ e.g. to zero.</li>
+  <li>Then iterate<br />
+ <script type="math/tex">\forall s: v_{k+1}(s)=\mathbb{E}[R_{t+1}=\gamma v_{k}(S_{t+1})|s,\pi]</script></li>
+  <li>
+    <p>Note: whenever $v_{k+1}(s)=v_{k}(s)$, for all $s$, we must have found $v_{\pi}$</p>
+  </li>
+  <li>This policy evaluation is always converge under appropriate conditions (e.g., $\gamma &lt; 1$)</li>
+</ul>
+
+<p>Implies $\lim_{k\rightarrow\infty}v_{k}=v_{\pi}$</p>
+<ul>
+  <li>Finite-horizon episodic case is a bit harder, but also works</li>
+</ul>
+
+
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

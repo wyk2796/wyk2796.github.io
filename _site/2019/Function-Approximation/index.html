@@ -76,7 +76,16 @@
 
 
 </nav>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+                    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+                            });
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </header>
+
 
 <script>
 $(document).ready(function() {
@@ -111,7 +120,7 @@ $(document).ready(function() {
     <a  href="/about" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">About Me</a>
   </li><ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/news" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Blogs</a>
+    <a  href="/news" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Study Note</a>
   </li>
   </nav>
 </div>
@@ -175,8 +184,8 @@ $(document).ready(function() {
   </li>
   <li>Solution for large MDPs:
     <ul>
-      <li>Estimate value function with <strong>function approximation</strong>
- <script type="math/tex">% <![CDATA[
+      <li>Estimate value function with <strong>function approximation</strong><br />
+<script type="math/tex">% <![CDATA[
 \begin{aligned}
 v_\theta(s)\approx v_\pi(s) \qquad &(or, v_*(s)) \\
 q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
@@ -224,17 +233,17 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
 <h3 id="approximate-values-by-stochastic-gradient-descent">Approximate Values By Stochastic Gradient Descent</h3>
 <hr />
 <ul>
-  <li>Goal: fins $\theta$ that minimise the difference between $v_\theta(s)$ and $v_\pi(s)$ 
+  <li>Goal: fins $\theta$ that minimise the difference between $v_\theta(s)$ and   $v_\pi(s)$ 
 <script type="math/tex">J(\theta)=\mathbb{E}[(v_\pi(S)-v_\theta(S))^2]</script>
       Note: The expectation if over the state distribution — e.g., induced by the policy</li>
-  <li>Gradient descent:
+  <li>Gradient descent:<br />
 <script type="math/tex">\Delta\theta=-\frac{1}{2}\alpha\nabla_\theta J(\theta)=\alpha\mathbb{E}[(v_\pi(S)-v_\theta(S))\nabla_\theta v_\theta(S)]</script></li>
-  <li><strong>Stochastic</strong> gradient descent
+  <li><strong>Stochastic</strong> gradient descent<br />
 <script type="math/tex">\Delta\theta_t=\alpha(v_\pi(S_t)-v_\theta(S_t))\nabla_\theta v_\theta(S_t)</script>
     <h3 id="feature-vectors">Feature Vectors</h3>
     <hr />
   </li>
-  <li>Represent state by a <strong>feature vector</strong> 
+  <li>Represent state by a <strong>feature vector</strong> <br />
 <script type="math/tex">\phi(s) = \left(\begin{array}{cc}
 \phi_1(s) \\ \vdots \\ \phi_n(s)
 \end{array}\right)</script></li>
@@ -250,25 +259,24 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
 </ul>
 
 <h3 id="approximate-values-by-stochastic-gradient-descent-1">Approximate Values By Stochastic Gradient Descent</h3>
-<hr />
 <ul>
-  <li>Goal: fina $\theta$ that minimise the difference between $v_\theta(s)$ and $v_\pi(s)$
-<script type="math/tex">J(\theta)=\mathbb{E}[(v_\pi(S)-v_\theta(S))^2]</script>
-      Note: The expectation if over the state distribution — e.g., induced by the policy.</li>
-  <li>Gradient desent:
+  <li>Goal: fina $\theta$ that minimise the difference between $v_\theta(s)$ and $v_\pi(s)$ 
+<script type="math/tex">J(\theta)=\mathbb{E}[(v_\pi(S)-v_\theta(S))^2]</script>  <br />
+Note: The expectation if over the state distribution — e.g., induced by the policy.</li>
+  <li>Gradient descent:<br />
 <script type="math/tex">\Delta\theta=-\frac{1}{2}\alpha\Delta_\theta J(\theta)=\alpha\mathbb{E}_\pi p[(v_\pi(S)-v_\theta(S))\nabla_\theta v_\theta(S)]</script></li>
-  <li><strong>Stochastic</strong> gradient descent:
+  <li><strong>Stochastic</strong> gradient descent:<br />
 <script type="math/tex">\Delta\theta_t=\alpha(v_\pi(S_t)-v_\theta(S_t))\nabla_\theta v_\theta(S_t)</script></li>
 </ul>
 
 <h3 id="linear-value-function-approximation">Linear Value Function Approximation</h3>
 <ul>
-  <li>Approximate value function by a linear combination of features
+  <li>Approximate value function by a linear combination of features<br />
 <script type="math/tex">v_\theta(s)=\theta^\top \phi(s)=\sum_{j=1}^n\phi_j(s)\theta_j</script></li>
-  <li>Objective function (‘loss’) is quadratic in $\theta$
+  <li>Objective function (‘loss’) is quadratic in $\theta$<br />
 <script type="math/tex">J(\theta)=\mathbb{E}_\pi\big[(v_\pi(S)-\theta^\top\phi(S))^2\big]</script></li>
   <li>Stichastic gradient descent converges on global ooptimum</li>
-  <li>Update rule is simple
+  <li>Update rule is simple<br />
 <script type="math/tex">\nabla_\theta v_\theta(S_t)=\phi(S_t)=\phi_t \quad \Longrightarrow \quad \Delta_\theta = \alpha(v_\pi(S_t)-v_\theta(S_t))\phi_t</script>
       $\large \text{Update}=\textbf{step size}\times\textbf{prediction error}\times\textbf{feature vector}$</li>
 </ul>
@@ -279,10 +287,10 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
   <li>The true value function $v_\pi(s)$ is typically not available</li>
   <li>In practice, we substitute a <strong>target</strong> for $v_\pi(s)$
     <ul>
-      <li>For MC, the target is the return $G_t$
-<script type="math/tex">\Delta\theta_t=\alpha(\textcolor{red}{G_t} - v_\theta(s))\nabla_\theta v_\theta(s)</script></li>
-      <li>For TD, the target is the TD target $R_{t+1}+\gamma v_\theta(S_{t+1})$
-<script type="math/tex">\Delta\theta_t=\alpha(\textcolor{red}{R_{t+1}+\gamma v_\theta(S_{t+1})} - v_\theta(S_t))\nabla_\theta v_\theta(S_t)</script></li>
+      <li>For MC, the target is the return $G_t$<br />
+<script type="math/tex">\Delta\theta_t=\alpha(G_t - v_\theta(s))\nabla_\theta v_\theta(s)</script></li>
+      <li>For TD, the target is the TD target $R_{t+1}+\gamma v_\theta(S_{t+1})$<br />
+<script type="math/tex">\Delta\theta_t=\alpha(R_{t+1}+\gamma v_\theta(S_{t+1}) - v_\theta(S_t))\nabla_\theta v_\theta(S_t)</script></li>
     </ul>
   </li>
 </ul>
@@ -291,12 +299,12 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
 <hr />
 <ul>
   <li>The return $G_t$ is an unbiased, noisy sample of $v_\pi(s)$</li>
-  <li>Can therefore apply supervised learning to (online) “training data”
+  <li>Can therefore apply supervised learning to (online) “training data”<br />
 <script type="math/tex">{(S_0,G_0),\ldots,(S_t,G_t)}</script></li>
-  <li>For example, using <strong>linear Monte-Carlo policy evaluation</strong>
+  <li>For example, using <strong>linear Monte-Carlo policy evaluation</strong><br />
 <script type="math/tex">% <![CDATA[
 \begin{aligned}
-\Delta\theta_t &=\alpha(\textcolor{red}{G_t} - v_\theta(S_t))\nabla_\theta v_\theta(S_t) \\
+\Delta\theta_t &=\alpha(G_t - v_\theta(S_t))\nabla_\theta v_\theta(S_t) \\
 & = \alpha(G_t - v_\theta(S_t))\phi_t
 \end{aligned} %]]></script></li>
   <li>Monte-Carlo evaluation converges to a local optimum</li>
@@ -308,12 +316,12 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
 <hr />
 <ul>
   <li>The TD-target $R_{t+1}+\gamma v_\theta(S_{t+1})$ is a <strong>biased</strong> sample og true value $v_\pi(S_t)$</li>
-  <li>Can still apply supervised learning to “training data”
+  <li>Can still apply supervised learning to “training data”<br />
 <script type="math/tex">{(S_0,R_1+\gamma v_\theta(S_1)),\ldots,(S_t,R_{t+1}+\gamma v_\theta(S_{t+1}))}</script></li>
-  <li>For example, using linear TD
+  <li>For example, using linear TD<br />
 <script type="math/tex">% <![CDATA[
 \begin{aligned}
-\Delta\theta_t &= \alpha\underbrace{(\textcolor{red}{R_{t+1}+\gamma v_\theta(S_{t+1})}-v_\theta(S_t))}_{\normalsize =\delta_t, \text{TD error}}\nabla_\theta v_\theta(S_t) \\
+\Delta\theta_t &= \alpha\underbrace{(R_{t+1}+\gamma v_\theta(S_{t+1})-v_\theta(S_t))}_{\normalsize =\delta_t, \text{TD error}}\nabla_\theta v_\theta(S_t) \\
 & =\alpha\delta_t\phi_t
 \end{aligned} %]]></script></li>
 </ul>
@@ -322,26 +330,26 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
 <hr />
 <ul>
   <li>
-    <p>with linear functions, MC converges to
+    <p>with linear functions, MC converges to<br />
 <script type="math/tex">\min_\theta\mathbb{E}\big[(G_t-v_\theta(S_t))^2\big]=\mathbb{E}\big[\phi_t\phi_t^\top\big]^{-1}\mathbb{E}\big[v_\pi(S_t)\phi_t\big]</script></p>
   </li>
-  <li>With linear function, TD converges to
+  <li>With linear function, TD converges to<br />
 <script type="math/tex">\min_\theta\mathbb{E}\big[(R_{t+1}+\gamma v_\theta(S_{t+1}-v_\theta(S_t)))^2\big]=\mathbb{E}\big[\phi_t(\phi_t-\gamma\phi_{t+1})^\top\big]\mathbb{E}\big[R_{t+1}\phi_t\big]</script>
-      (in continuing problem with fixed $\gamma$)</li>
+(in continuing problem with fixed $\gamma$)</li>
   <li>This is a different solution from MC</li>
   <li>Typically, the asymptotic MC solution is preferred</li>
-  <li>But TD methods may converge faster, and may still be better
+  <li>But TD methods may converge faster,   and may still be better<br />
 <script type="math/tex">\textbf{TD:}\quad\Delta_t=\alpha\delta\nabla_\theta v_\theta(S_t)\quad \textbf{where} \quad \delta_t=R_{t+1}+\gamma v_\theta(S_{t+1}-v_\theta(S_t))</script></li>
   <li>This update ignores dependence of $v_\theta(S_{t+1})$ on $\theta$</li>
 </ul>
 
 <h3 id="action-value-function-approximation">Action-Value Function Approximation</h3>
 <ul>
-  <li>Approximate the action-value function
+  <li>Approximate the action-value function<br />
 <script type="math/tex">q_\theta(s,a)\approx q_\pi(S,a)</script></li>
-  <li>For instance, with linear function approximation
+  <li>For instance, with linear function approximation<br />
 <script type="math/tex">q_\theta(s,a)=\phi(s,a)_\top\theta=\sum_{j=1}^n\phi_j(s,a)\theta_j</script></li>
-  <li>Stochastic gradient descent update
+  <li>Stochastic gradient descent update<br />
 <script type="math/tex">% <![CDATA[
 \begin{aligned}
 \Delta\theta &= \alpha(q_\pi(s,a)-q_\theta(s,a))\nabla_\theta q_\theta(s,a) \\
@@ -353,7 +361,7 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
 <hr />
 <ul>
   <li>Given value function approximation $v_\theta(s) \approx v_\pi(s)$</li>
-  <li>And <strong>experience</strong> $\mathcal{D}$ consisting of $\large \langle \text{state, estimated value} \rangle$pairs
+  <li>And <strong>experience</strong> $\mathcal{D}$ consisting of $\large \langle \text{state, estimated value} \rangle$pairs<br />
 <script type="math/tex">\mathcal{D}=\big\{\langle S_1,\hat{v}_1^\pi \rangle,\langle S_2,\hat{v}_2^\pi \rangle,\ldots,\langle S_T,\hat{v}_T^\pi \rangle \big\}</script></li>
   <li>E.g., $\large \hat{V}<em>1^\pi=R</em>{t+1}+\gamma v_\theta(S_{t+1})$</li>
   <li>Which parameters $\theta$ give the best fitting value function $v_\theta(s)$?</li>
@@ -361,23 +369,25 @@ q_\theta(s,a)\approx q_\pi(s,a) \qquad &(or,q_*(s,a))
 
 <h3 id="stochastic-gradient-descent-with-experience-replay">Stochastic Gradient Descent with Experience Replay</h3>
 <hr />
-<p>Give experience consisting of $\large \langle \text{state, value} \rangle$pairs
-<script type="math/tex">\mathcal{D}=\big\{\langle S_1,\hat{v}_1^\pi \rangle,\langle S_2,\hat{v}_2^\pi \rangle,\ldots,\langle S_T,\hat{v}_T^\pi \rangle \big\}</script>
+<p>Give experience consisting of $\large \langle \text{state, value} \rangle$pairs<br />
+<script type="math/tex">\mathcal{D}=\big\{\langle S_1,\hat{v}_1^\pi \rangle,\langle S_2,\hat{v}_2^\pi \rangle,\ldots,\langle S_T,\hat{v}_T^\pi \rangle \big\}</script><br />
 Repeat:</p>
 <ol>
-  <li>Sample state, value from experience
+  <li>Sample state, value from experience<br />
 <script type="math/tex">\langle s, \hat{v}_\pi  \rangle \sim \mathcal{D}</script></li>
-  <li>Apply stochastic gradient decent update
-<script type="math/tex">\Delta\theta = \alpha(\hat{v}^\pi - v_\theta(s))\nabla_\theta v_\theta(s)</script>
-Converges to least squares solution
-<script type="math/tex">\theta_\pi=\mathop{\text{argmin}}\limits_\theta LS(\theta)=\mathop{\text{argmin}}\limits_\theta\mathbb{E}_\mathcal{D}\big[(\hat{v}_i^\pi-v_\theta(S_i))^2\big]</script>
-    <h3 id="linear-least-squares-prediction">Linear Least Squares Prediction</h3>
-    <hr />
-    <ul>
-      <li>Experience replay finds least squares solution</li>
-      <li>But it may take many iterations</li>
-      <li>Using <strong>linear</strong> value function approximation $v_\theta(s)=\phi(s)^\top\theta$ we can solve the least squares solution directly</li>
-      <li>At minimum of $LS(\theta)$, the expected update must be zero
+  <li>Apply stochastic gradient decent update<br />
+<script type="math/tex">\Delta\theta = \alpha(\hat{v}^\pi - v_\theta(s))\nabla_\theta v_\theta(s)</script><br />
+Converges to least squares solution<br />
+<script type="math/tex">\theta_\pi=\mathop{\text{argmin}}\limits_\theta LS(\theta)=\mathop{\text{argmin}}\limits_\theta\mathbb{E}_\mathcal{D}\big[(\hat{v}_i^\pi-v_\theta(S_i))^2\big]</script></li>
+</ol>
+
+<h3 id="linear-least-squares-prediction">Linear Least Squares Prediction</h3>
+<hr />
+<ul>
+  <li>Experience replay finds least squares solution</li>
+  <li>But it may take many iterations</li>
+  <li>Using <strong>linear</strong> value function approximation $v_\theta(s)=\phi(s)^\top\theta$ we can solve the least squares solution directly</li>
+  <li>At minimum of $LS(\theta)$, the expected update must be zero<br />
 <script type="math/tex">% <![CDATA[
 \begin{aligned}
 \mathbb{E}_\mathcal{D}[\Delta\theta] &= 0 \\
@@ -385,18 +395,16 @@ Converges to least squares solution
 \sum_{t=1}^T\phi_t\hat{v}_t^\pi &= \sum_{t=1}^T\phi_t\phi_t^\top\theta \\
 \theta_t &= \Big(\sum_{t=1}^T\phi_t\phi_t^\top\Big)^{-1}\sum_{t=1}^T\phi_t\hat{v}_t^\pi
 \end{aligned} %]]></script></li>
-      <li>For N feature, direct solution time is $O(N^3)$</li>
-      <li>Incremental solution time is $O(N^2)$ using Shermann-Morrison</li>
-      <li>We do not know true values $v_\pi$ (have estimates $\hat{v}_t$)</li>
-      <li>In practice, our “training data” must use noisy or biased sample of $v_\pi$</li>
-    </ul>
-  </li>
-</ol>
+  <li>For N feature, direct solution time is $O(N^3)$</li>
+  <li>Incremental solution time is $O(N^2)$ using Shermann-Morrison</li>
+  <li>We do not know true values $v_\pi$ (have estimates $\hat{v}_t$)</li>
+  <li>In practice, our “training data” must use noisy or biased sample of $v_\pi$</li>
+</ul>
 
-<p>      &lt;font color=blue&gt;<strong>LSMC</strong>&lt;/font&gt; Least Squares Monte-Carlo uses return
-<script type="math/tex">v_\pi \approx \textcolor{red}{G_t}</script>
-      &lt;font color=blue&gt;<strong>LSTD</strong>&lt;/font&gt; Least Squares Temporal-Difference uses TD target
-<script type="math/tex">v_\pi \approx \textcolor{red}{R_{t+1} + \gamma v_\theta(S_{t+1})}</script></p>
+<p>      &lt;font color=blue&gt;<strong>LSMC</strong>&lt;/font&gt; Least Squares Monte-Carlo uses return<br />
+<script type="math/tex">v_\pi \approx G_t</script>
+      &lt;font color=blue&gt;<strong>LSTD</strong>&lt;/font&gt; Least Squares Temporal-Difference uses TD target<br />
+<script type="math/tex">v_\pi \approx R_{t+1} + \gamma v_\theta(S_{t+1})</script></p>
 <ul>
   <li>In each case we can solve directly for the fixed poine</li>
 </ul>
@@ -425,11 +433,11 @@ Converges to least squares solution
 <ul>
   <li>Online neural Q-learning may include:
     <ul>
-      <li>A <strong>network</strong> $q_\theta:\medspace O_t \Longrightarrow (q[1],\ldots,q[m])(m\space \text{actions})$</li>
-      <li>An $\epsilon-\text{greedy}$ <strong>exploration policy</strong>: $q_t\medspace \Longrightarrow \medspace \pi_t \Longrightarrow \medspace A_t$</li>
-      <li>A Q-learning <strong>loss function</strong> on $\theta$
-<script type="math/tex">I(\theta)=\frac{1}{2}\Big(R_{t+1}+\gamma\Big[\max_a q_\theta (S_{t+1},a)\Big] - q_\theta (S_t, A_t)\Big)^2</script>
-where $[\cdot ]$ denotes stopping the gradient, so that the gradient is 
+      <li>A <strong>network</strong> $q_\theta:\space O_t \Longrightarrow (q[1],\ldots,q[m])(m\space \text{actions})$</li>
+      <li>An $\epsilon-\text{greedy}$ <strong>exploration policy</strong>: $q_t\space \Longrightarrow \space \pi_t \Longrightarrow \space A_t$</li>
+      <li>A Q-learning <strong>loss function</strong> on $\theta$<br />
+<script type="math/tex">I(\theta)=\frac{1}{2}\Big(R_{t+1}+\gamma\Big[\max_a q_\theta (S_{t+1},a)\Big] - q_\theta (S_t, A_t)\Big)^2</script><br />
+where $[\cdot ]$ denotes stopping the gradient, so that the gradient is<br />
 <script type="math/tex">\nabla_\theta I(\theta)=\Big(R_{t+1}+\gamma\max_a q_\theta(S_{t+1},a)-q_\theta(S_t,A_t)\Big)\nabla_\theta q_\theta(S_t,A_t)</script></li>
       <li>An <strong>optimizer</strong> to minimize the loss (e.g., SGD, RMSProp, Adma)</li>
     </ul>
@@ -442,11 +450,11 @@ where $[\cdot ]$ denotes stopping the gradient, so that the gradient is
 <ul>
   <li>DQN (Mnih et al. 2013, 2015) includes;
     <ul>
-      <li>A <strong>network</strong> $q_\theta:\medspace O_t \mapsto (q[1],\ldots,q[m])(m\space \text{actions})$</li>
-      <li>An $\epsilon-\text{greedy}$ <strong>exploration policy</strong>: $q_t\medspace \mapsto \medspace \pi_t \Longrightarrow \medspace A_t$</li>
+      <li>A <strong>network</strong> $q_\theta:\space O_t \mapsto (q[1],\ldots,q[m])(m\space \text{actions})$</li>
+      <li>An $\epsilon-\text{greedy}$ <strong>exploration policy</strong>: $q_t\space \mapsto \space \pi_t \Longrightarrow \space A_t$</li>
       <li>A <strong>replay buffer</strong> to store and sample past transitions</li>
-      <li>A <strong>target network</strong> $q_{\theta^-}:\medspace Q_t \mapsto\space(q^-[1],\ldots,q^-[m])$</li>
-      <li>A Q-learning <strong>loss function</strong> on $\theta$ (use replay and target network) 
+      <li>A <strong>target network</strong> $q_{\theta^-}:\space Q_t \mapsto\space(q^-[1],\ldots,q^-[m])$</li>
+      <li>A Q-learning <strong>loss function</strong> on $\theta$ (use replay and target network) <br />
 <script type="math/tex">I(\theta)=\frac{1}{2}\Big(R_{t+1}+\gamma\Big[\max_a q_{\theta^-} (S_{t+1},a)\Big] - q_\theta (S_t, A_t)\Big)^2</script></li>
       <li>An <strong>optimizer</strong> to minimize the loss (e.g., SGD, RMSProp, Adma)</li>
     </ul>
@@ -460,18 +468,18 @@ where $[\cdot ]$ denotes stopping the gradient, so that the gradient is
 <hr />
 <ul>
   <li>
-    <p>Consider the following n-steps returns for $n=1,2,\infin:$
+    <p>Consider the following n-steps returns for $n=1,2,\infty: $<br />
 <script type="math/tex">% <![CDATA[
-\begin{alignedat}a
+\begin{aligned}
 &n=1 \quad &(TD)\quad & G_T^{(1)}=R_{t+1} + \gamma v(S_{t+1}) \\
 &n=2 \quad &\quad & G_T^{(2)}=R_{t+1} + \gamma R_{t+2} +\gamma^2 v(S_{t+2}) \\
 &\quad \vdots \quad &\quad & \vdots \\
-&n=\infin \quad &(MC)\quad & G_T^{(\infin)}=R_{t+1} + \gamma R_{t+2}+\ldots+\gamma^{T-t-1}R_T
-\end{alignedat} %]]></script></p>
+&n=\infty \quad &(MC)\quad & G_T^{(\infty)}=R_{t+1} + \gamma R_{t+2}+\ldots+\gamma^{T-t-1}R_T
+\end{aligned} %]]></script></p>
   </li>
-  <li>Define the n-step return
+  <li>Define the n-step return<br />
 <script type="math/tex">G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + \ldots + \gamma^{n-1} R_{t+n} + \gamma^n v(S_{t+n})</script></li>
-  <li>n-step temporal-difference learning
+  <li>n-step temporal-difference learning<br />
 <script type="math/tex">v(S_t) \leftarrow v(S_t) + \alpha\Big(G_t^{(n)} - v(S_t)\Big)</script></li>
 </ul>
 
@@ -624,4 +632,13 @@ $('h1').first().append('<div></div>')</script>
 <script src="/assets/js/main.js"></script>
 
   </body>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>  
 </html>

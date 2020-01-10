@@ -20,19 +20,19 @@
 <link rel="icon" type="image/png" href="/assets/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/assets/favicons/android-192x192.png"sizes="192x192">
 
-<title>A Nested Page</title>
-<meta property="og:title" content="A Nested Page" />
-<meta property="og:description" content="An example of a a nested page in a subfolder." />
+<title>Planning and models</title>
+<meta property="og:title" content="Planning and models" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:4000" />
 <meta property="og:site_name" content="http://localhost:4000" />
 
-<meta itemprop="name" content="A Nested Page">
-<meta itemprop="description" content="An example of a a nested page in a subfolder.">
+<meta itemprop="name" content="Planning and models">
+<meta itemprop="description" content="">
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="A Nested Page"/>
-<meta name="twitter:description" content="An example of a a nested page in a subfolder."/>
+<meta name="twitter:title" content="Planning and models"/>
+<meta name="twitter:description" content=""/>
 
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/palette.css">
@@ -128,8 +128,8 @@ $(document).ready(function() {
           </div>
           <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
               <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-                  <a href="/edit/master/_docs/subfolder/example-page.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="/issues/new?labels=question&title=Question:&body=Question on: /tree/master/_docs/subfolder/example-page.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+                  <a href="/edit/master/_posts/2019-05-23-Planning and Models.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="/issues/new?labels=question&title=Question:&body=Question on: /tree/master/_posts/2019-05-23-Planning and Models.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 <!-- this will parse through the header fields and add a button to open
      an issue / ask a question on Github. The editable field should be in
@@ -146,15 +146,348 @@ $(document).ready(function() {
             <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
 	      <ol class="breadcrumb spb-1">
                 <li class="breadcrumb-item active" aria-current="page">
-	          <a href="/docs/subfolder/example-page">A Nested Page</a>
+	          <a href="/2019/Planning-and-Models/">Planning and models</a>
                 </li>
 	      </ol>
            </nav>
            <div class="td-content">
-	      <h1 id="a-nested-page">A Nested Page</h1>
+	      <h1 style="margin-bottom:0px">Planning and models</h1>
 
-<p>This is an example of a page that doesn’t have a permalink defined, and
-is not included in the table of contents (<code class="language-plaintext highlighter-rouge">_data/toc.yml</code>).</p>
+<span class="post-date" style="font-style: italic;">May 23, 2019</span>
+<h3 id="1-model-based-and-model-free-rl">1. Model-Based and Model-Free RL</h3>
+<ul>
+  <li>Model-Free RL
+    <ul>
+      <li>No model</li>
+      <li><strong>Learn</strong> value function (and/or policy) from experience</li>
+    </ul>
+  </li>
+  <li>Model-Based RL
+    <ul>
+      <li><strong>Learn</strong> a model from experience OR be given a model</li>
+      <li><strong>Plan</strong> value function (and/or policy) from model</li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<hr />
+<h3 id="2-what-is-a-model">2. What is a Model?</h3>
+<ul>
+  <li>A model $\mathcal{M}<em>\eta$ is a representation of MDP $\langle \mathcal{S, A}, \hat{p}</em>\eta \rangle$</li>
+  <li>For now, we will assume the states and actions are the same as in the real problem</li>
+  <li>
+    <p>The model <strong>approximates</strong> the state transitions and rewards $\hat{p}_\eta\approx p$<br />
+<script type="math/tex">R_{t+1}, S_{t+1} \sim \hat{p}_\eta (r, s'|S_t,A_t)</script><br />
+(Note there is not probability distribution function)</p>
+  </li>
+  <li>Optionally, we could model rewards and state dynamics separately</li>
+</ul>
+
+<hr />
+<h3 id="3-model-learning">3. Model Learning</h3>
+<ul>
+  <li>Goal: <strong>estimate</strong> model $\mathcal{M}_\eta$ from experienve ${S_1, A_1, R_2,\ldots,S_T}$</li>
+  <li>This is a supervised learning problem<br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+S_1,A_1 &\rightarrow R_2, S_2 \\
+&\vdots \\
+S_{T-1},A_{T-1} &\rightarrow R_{T}, S_{T}
+\end{aligned} %]]></script></li>
+  <li>Learn a function $f(s,a) = r,s’$</li>
+  <li>Pick loss function (e.g. mean-squared error), and find parameters $\eta$ that minimise empirical loss</li>
+  <li>This would give an expectation model</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>If $f(s,a)=r,s’$, then we would hope $s’\approx \mathbb{E}[S_{t+1}</td>
+          <td>s=S_t,a=A_t]$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<hr />
+<h3 id="4-stochastic-model">4. Stochastic Model</h3>
+
+<ul>
+  <li>We may not want to assume everything is linear</li>
+  <li>Then expected states may not be roght — they may not correspond to actual states, and iterating the model may do weird things.</li>
+  <li>Alternative: <strong>stochastic models</strong> (also know as <strong>generative models</strong>) 
+<script type="math/tex">\hat{R}_{t+1}, \hat{S}_{t+1} = \hat{p}(S_t, A_t,\omega)</script>
+where $\omega$ is a noise term</li>
+  <li>Stochastic models can be chained, even if the model is non-linear.</li>
+  <li>But they do add not noise</li>
+</ul>
+
+<hr />
+<h3 id="5-exmples-of-models">5. Exmples of Models</h3>
+<ul>
+  <li>Table Looking Model</li>
+  <li>Linear Expectation Model</li>
+  <li>Linear Gaussian Model</li>
+  <li>Deep Neural Network Model</li>
+  <li>……</li>
+</ul>
+
+<h4 id="51-table-lookup-model">5.1 Table Lookup Model</h4>
+<ul>
+  <li>Model is an explicit MDP</li>
+  <li>Count visits $N(s,a)$ to each state action pair<br />
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+\hat{p}_t(s'|s,a) &= \frac{1}{N(s,a)}\sum_{k=0}^{t-1}I(S_k=s,A_k=a,S_{k+1}=s') \\
+\mathbb{\hat{p}_t}[R_{t+1}|S_t=s,A_t=a] &= \frac{1}{N(s,a)}\sum_{k=0}^{t-1}I(S_k=s,A_k=a)R_{k+1}
+\end{aligned} %]]></script></li>
+  <li>Alternatively, use non-parameteric ‘replay’
+    <ul>
+      <li>At each time-step t, record experience tuple $\langle S_t,A_t,R_{t+1},S_{t+1} \rangle$</li>
+      <li>To sample model, randomly pick tuple matching $\langle s,a,\cdot,\cdot\rangle$</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h3 id="6-planing-with-a-model">6. Planing with a Model</h3>
+<ul>
+  <li>Given a model $\hat{p}_\eta$</li>
+  <li>Solve the MDP $\langle \mathcal{S,A},\hat{p}_\eta \rangle$</li>
+  <li>Using favourite planning algorithm
+    <ul>
+      <li>Value iteration</li>
+      <li>Policy iteration</li>
+      <li>Tree search</li>
+      <li>……</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="61-sample-based-planning">6.1 Sample-Based Planning</h4>
+<ul>
+  <li>A simple but powerful approach to planning</li>
+  <li>Use the model <strong>only</strong> to generate sampler</li>
+  <li><strong>Sample</strong> experience from model<br />
+<script type="math/tex">S,R \sim \hat{p}_\eta(\cdot|s,a)</script></li>
+  <li>Apply <strong>model-free</strong> RL to sample, e.g.:
+    <ul>
+      <li>Monte-Carlo control</li>
+      <li>Sarsa</li>
+      <li>Q-learning</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h3 id="7-conventional-model-based-and-model-free-metheds">7. Conventional model-based and model-free metheds</h3>
+
+<p>Traditional RL algorithms did not explicitly store their experiences, and were often placed into one of two groups.</p>
+<ul>
+  <li><strong>Model-free</strong> methods update the value function and/or policy and do not have explicit dynamics models.</li>
+  <li><strong>Models-based</strong> methods update the transition and reward models, and compute a value function or policy from the model.</li>
+</ul>
+
+<hr />
+<h3 id="8-using-experience-in-the-place-of-model">8. Using experience in the place of model</h3>
+<p>Recall prioritized sweeping from tabular dynamic programming</p>
+<ul>
+  <li>Update the value function of the states with the largest magnitude Bellman errors using a priority queue.
+A related idea is prioritized experience replay (Schaul et al, 2015) which works from experience for general function approximation.</li>
+  <li>The experience replay buffer maintain a priority for each transition, with the priority given by the magnitude of the Bellman error.</li>
+  <li>Minibatches are sampled using this priority to quickly reduce errors.</li>
+  <li>Weighted importance sampling corrects for bias from non-uniform sampling</li>
+</ul>
+
+<hr />
+<h3 id="9-limits-of-planning-with-an-inaccurate-model">9. Limits of Planning with an Inaccurate Model</h3>
+<ul>
+  <li>Given an imperfect model $\hat{p}_\eta \neq p$</li>
+  <li>Performance is limited to optimal policy for approximate MDP $\langle \mathcal{M,A,\hat{p}_\eta}\rangle$</li>
+  <li>Model-based RL is only as good as the estimated model</li>
+  <li>When the model is inaccurate, planning process will compute a suboptimal policy (not covered in these slides)
+    <ul>
+      <li>Approach 1: when model is wrong, use model-free RL</li>
+      <li>Approach 2: reson explicitly about model uncertainty over $\eta$ (e.g. Bayesian methon)</li>
+      <li>Approach 3: Combine model-based and model-free methods in a safe way.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h3 id="10-real-and-simulated-experience">10. Real and Simulated Experience</h3>
+<p>We consider two sources of experience
+Real experience Sampled from environment (true MDP)<br />
+<script type="math/tex">r,s'\sim p</script><br />
+Sumulated experience Sampled from model (approximate MDP)<br />
+<script type="math/tex">r,s' \sim \hat{p}_\eta</script></p>
+
+<hr />
+<h3 id="11-intergrating-learning-and-planning">11. Intergrating Learning and Planning</h3>
+<ul>
+  <li>Model-Free RL
+    <ul>
+      <li>No model</li>
+      <li><strong>Learn</strong> value function (and/or policy) from real experience</li>
+    </ul>
+  </li>
+  <li>Model-Based RL (using Sample-Based Planning)
+    <ul>
+      <li>Learn a model from real experience</li>
+      <li><strong>Plan</strong> value function (and/or policy) from simulated experience</li>
+    </ul>
+  </li>
+  <li>Dyna
+    <ul>
+      <li>Learn a model from real experience</li>
+      <li><strong>Learn AND plan</strong> value function (and/or policy) from real and simulated experience</li>
+      <li>Treat real and sumulated esperience equivalently. Conceptually, the update from learning or planning are not distinguished.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="111-dyna-q-algorithm">11.1 Dyna-Q Algorithm</h4>
+
+<blockquote>
+  <script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+& \text{Initialize}\space Q(s,a)\space \text{and Model}(s,a)\quad \text{for all}\space s\in\mathcal{A}(s) \\
+& \text{Do forever:} \\
+& \qquad (a) \quad s \leftarrow \text{current (nonterminal) state} \\
+& \qquad (b)\quad a \leftarrow \epsilon\text{-greedy}(s,Q) \\
+& \qquad (c) \quad \text{Execute action}\space a\text{; observe resultant state, }s'\text{, and reward, }r\\
+& \qquad (d)\quad Q(s,a)\leftarrow Q(s,a)+\alpha[r + \gamma\max_{a'}Q(s',a')-Q(s,a)]\\
+& \qquad (e)\quad Model(s,a) \leftarrow s',r \quad\text{(assuming deterministic environment)}\\
+& \qquad (f)\quad \text{Repeat}\space N \space \text{times:} \\
+& \qquad\qquad s \leftarrow \text{random previously observed state} \\
+& \qquad\qquad a\leftarrow \text{random action previously taken in}\space s \\
+& \qquad\qquad s',r \leftarrow Model(s,a) \\
+& \qquad\qquad Q(s,a)\leftarrow Q(s,a) + \alpha[r+\gamma\max_{a'}Q(s',a')-Q(s,a)]
+\end{aligned} %]]></script>
+</blockquote>
+
+<h3 id="112-dyna-with-function-approximation">11.2 Dyna with Function Approximation</h3>
+<ul>
+  <li>How can an agent plan when the actual environmental states are not know?</li>
+  <li>Can directly approximate probability distributions of the transitions and the rewards.</li>
+  <li>Probability distribution models in high dimensional feature spaces are computationally expensive and often inaccurate!</li>
+</ul>
+
+<hr />
+<h3 id="12-planning-for-action-selection">12. Planning for Action Selection</h3>
+<ul>
+  <li>We considered the case where planning is used to improve a global value function</li>
+  <li>Now consider planning for the near future, to select the next action</li>
+  <li>The distribution of states that may be encounted from <strong>now</strong> can diff from the distribution of states encountered from a starting state</li>
+  <li>The agent may be able to make a more accurate local value function (for the states that will be encountered soon) than the global value function</li>
+</ul>
+
+<h4 id="121-forward-search">12.1 Forward Search</h4>
+<ul>
+  <li><strong>Forward search</strong> algorithms select the best action by <strong>look ahead</strong></li>
+  <li>They build a search tree with the current state $s_t$ at the root</li>
+  <li>
+    <p>Using a <strong>model</strong> of the MDP to look ahead
+<img src="https://i.loli.net/2019/12/24/QkTADdw2EPx4zyG.png" alt="tree" /></p>
+  </li>
+  <li>No need to solve whole MDP, just sub-MDP starting from <strong>now</strong></li>
+</ul>
+
+<h4 id="122-simulation-based-search">12.2 Simulation-Based Search</h4>
+<ul>
+  <li><strong>Forward</strong> search paradigm using sample-based planning</li>
+  <li><strong>Simulate</strong> episodes of experience from <strong>now</strong> with the model</li>
+  <li>
+    <p>Apply <strong>model-free</strong> RL to simulated episodes<br />
+<img src="https://i.loli.net/2019/12/24/JmliqxjnY7TB5fI.png" alt="Search Path" /></p>
+  </li>
+  <li>Simulate episode of experience from <strong>now</strong> with the model<br />
+<script type="math/tex">\{S_t^k, A_t^k,R_{t+1}^k,\ldots,S_T^k\}_{k=1}^K \sim \hat{p}_\eta</script></li>
+  <li>Apply <strong>model-free</strong> RL to sumulated episodes
+    <ul>
+      <li>Monte-carlo control $\rightarrow$ Monte-Carlo search</li>
+      <li>Sarsa $\rightarrow$ TD search</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="123-search-tree-vs-value-function-approximation">12.3 Search tree vs. value function approximation</h4>
+<ul>
+  <li>Search tree is a table lookup approach</li>
+  <li>Based on a partial instantiation of the table</li>
+  <li>For model-free reinforcement learning, table lookup is naive
+    <ul>
+      <li>Can’t store value for all states</li>
+      <li>Doesn’t generalise between similar states</li>
+    </ul>
+  </li>
+  <li>For simulation-based search, table lookup is less naive
+    <ul>
+      <li>Search tree stores value for easily reachable states</li>
+      <li>In huge search spaces, value function approximation is helpful</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="13-monte-carlo-simulation">13. Monte-Carlo Simulation</h3>
+<ul>
+  <li>Given a parameterized model $\mathcal{M}_\eta$ and a <strong>simulation policy</strong> $\pi$</li>
+  <li>Simulate $K$ episodes from current state $S_t$<br />
+<script type="math/tex">\{S_t^k=S_t,A_t^k,R_{t+1}^k,S_{t+1}^k,\ldots,S_t^k\}_{k=1}^K \sim \hat{p}_\eta, \pi</script></li>
+  <li>Evaluate state by mean return (<strong>Monte-Carlo evaluaiton</strong>)<br />
+<script type="math/tex">v(\color{red}{S_t})=\frac{1}{K}\sum_{k=1}^K G_t^k \rightsquigarrow v_\pi(S_t)</script></li>
+</ul>
+
+<h4 id="131-simple-monte-carlo-search">13.1 Simple Monte-Carlo Search</h4>
+<ul>
+  <li>Given a model $\mathcal{M}_\eta$ and a policy $\pi$</li>
+  <li>For each action $a \in \mathcal{A}$
+    <ul>
+      <li>Simulate $K$ episodes from current (real) state $s$<br />
+<script type="math/tex">\{S_t^k=s,A_t^k=a,R_{t+1}^k,S_{t+1}^k,A_{t+1}^k,\ldots,S_t^k\}_{k=1}^K \sim \mathcal{M}_v,\pi</script></li>
+      <li>Evaluate actions by mean return (Monto-Carlo evaluation)<br />
+<script type="math/tex">q(\color{red}{s,a})=\frac{1}{K}\sum_{k=1}^K G_t^k \rightsquigarrow q_\pi(S_t)</script></li>
+      <li>Select current (real) action with maximum value<br />
+<script type="math/tex">A_t=\mathop{\text{argmax}}\limits_{a\in\mathcal{A}}q(S_t,a)</script></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="132-monte-carlo-tree-search-evaluation">13.2 Monte-Carlo Tree Search (Evaluation)</h4>
+<ul>
+  <li>Given a model $\mathcal{M}_\eta$</li>
+  <li>Simulate $K$ episodes from current state $S_t$ using current simulation policy $\pi$<br />
+<script type="math/tex">\{\color{red}{S_t^k=S_t},A_t^k,R_{t+1}^k,S_{T+1}^k,\ldots,S_t^k\}_{k=1}^K \sim \mathcal{M}_v,\pi</script></li>
+  <li>Build a search tree containing visited states and actions</li>
+  <li><strong>Evaluate</strong> states $q(s,a)$ by mean return of eqisodes from $s,a$<br />
+<script type="math/tex">q(s,a)=\frac{1}{N(s,a)}\sum_{k=1}^K\sum_{u=t}^T1(S_u^k,A_u^k=s,a)(G_u^k \rightsquigarrow q_\pi(s,a))</script></li>
+  <li>After searching, select current (real) action with maximum value in search tree<br />
+<script type="math/tex">a_t=\mathop{\text{argmax}}\limits_{a\in\mathcal{A}}q(S_t,a)</script></li>
+</ul>
+
+<h4 id="monte-carlo-tree-search-simulation">Monte-Carlo Tree Search (Simulation)</h4>
+<ul>
+  <li>In MCTS, the simulation policy $\pi$ <strong>improves</strong></li>
+  <li>The simulation policy $\pi$ has two phases (in-tree, out-of-tree)
+    <ul>
+      <li><strong>Tree policy</strong> (improves): pick action from $q(s,a)$ (e.g. $\epsilon$-greedy($q(s,a)$))</li>
+      <li><strong>Rollout policy</strong> (fixed): e.g., pick actions randomly</li>
+    </ul>
+  </li>
+  <li>Repeat (for each simulated episode)
+    <ul>
+      <li><strong>Select</strong> actions in tree according to tree policy</li>
+      <li><strong>Expand</strong> search tree by one node</li>
+      <li><strong>Rollout</strong> to termination with default policy</li>
+      <li><strong>Update</strong> action-values $q(s,a)$ in the tree</li>
+    </ul>
+  </li>
+  <li>Output best action when simulation time runs out.</li>
+  <li>With some asumptions, converges to the optimal values, $q(s,a)\Rightarrow q_*(s,a)$</li>
+</ul>
+
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
