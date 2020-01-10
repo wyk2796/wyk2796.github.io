@@ -6,13 +6,13 @@ permalink: /about/
 # YuKai Wu 
 ### email: ywu048@fiu.edu 
 ### EDUCATION
-- 2009.09—2013.07 AnQing Normal University (bachelor’s degree), major Information and Computing Science 
-- 2018.05—2019.12 Florida International University, major computer science 
+- 2009.09—2013.07 AnQing Normal University (bachelor degree), major Information and Computing Science 
+- 2018.05—2019.12 Florida International University (master degree), major computer science 
 
 ### PROFESSIONAL EXPERIENCE
 - ##### 2015.9 – 2018.1   HangZhou ShuYun Information Science Corporation (Algorithm Engineer)
   - **Design and Development of Recommend System for commodities**  
-    Develop a framework for Recommendation System, It can train model from users features data and generates a list of recommendation commodities. In this project, My duty is to develop a back-end part that can get data from several recommendation list and merge them by specific algorithm, final push them to user end. I’m also in charge with developing some recommendation algorithms suit for a particular scenario.  This recommendation framework mainly serves the advertising business
+    Develop a framework for Recommendation System, It can train model from users features data and generates a list of recommendation commodities. In this project, My duty is to develop a back-end part that can get data from several recommendation list and merge them by specific algorithm, final push them to user end. I’m also in charge with developing some recommendation algorithms suit for a particular scenario.  This recommendation framework mainly serves the advertising business.
   - **Design and Development of TaoBao, TMall User Portrait System**  
     Depend on user shopping records, I establish a label system for each user to represent user feature space. Such as Preference for Clothes, Preference for Cosmetics, Preference for Food  etc. This system can easily group users into several category and improve the precise of recommendation system.  
   - **Analysis user comment data with NLP**  
