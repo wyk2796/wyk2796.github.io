@@ -54,10 +54,10 @@
 	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
 		<ul class="navbar-nav mt-2 mt-lg-0">
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
-                            <a class="nav-link" href="/about" ><span>About</span></a>
+                            <a class="nav-link" href="https://github.com/wyk2796" target="_blank"><span>GitHub</span></a>
 			</li>
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
-                            <a class="nav-link" href="/about" ><span>Documentation</span></a>
+                            <a class="nav-link" href="/about" ><span>About</span></a>
 			</li>
 		</ul>
 	</div>
@@ -66,24 +66,33 @@
         </div>
 
 	<div class="navbar-nav d-none d-lg-block">
-          <a class="gh-source" data-gh-source="github" href="" title="Go to repository" data-md-state="done">
-          <div class="gh-source__repository">
-            <i class="fab fa fa-github fa-2x" style='padding-right:20px; float:left; margin-top:5px'></i>
-            yukai wu/yukai wu
-          <ul class="gh-source__facts"><li class="gh-source__fact" id='stars'></li><li id="forks" class="gh-source__fact"></li></ul></div></a>
-        </div>
-      </div>
-
+            <!-- <div class="gh-source__repository"> -->
+    <a class="gh-source" data-gh-source="github" href="https://github.com/wyk2796" title="Go to repository" data-md-state="done">
+      <i class="fab fa fa-github fa-2x" style='padding-right:20px; float:left; margin-top:5px'></i>
+    </a>
+    <a  class="gh-source"   data-gh-source="github"href="https://www.linkedin.com/in/yukai-wu-b50ba7b8" title="Go to linkedin" data-md-state="done">
+      <i class="fab fa-linkedin-in fa-2x" style='padding-right:20px; float:left; margin-top:5px'></i>
+    </a>
+              <!-- yukai wu/yukai wu -->
+              <!-- </div> -->
+            <!-- </div> -->
+              <!-- <ul class="gh-source__facts">
+                <li class="gh-source__fact" id='stars'>
+                </li>
+                <li id="forks" class="gh-source__fact">
+                </li>
+              </ul> -->
+  </div>
 
 </nav>
-<script type="text/x-mathjax-config">
+<!-- <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
                     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                             });
   </script>
   <script type="text/javascript"
     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+</script> -->
 </header>
 
 
@@ -117,20 +126,28 @@ $(document).ready(function() {
   <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/about" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">About Me</a>
-  </li><ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="/news" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Study Note</a>
-  </li>
+    <a  href="/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">List</a>
+  </li><ul>
+    <li class="collapse show" id="list">
+        <ul class="td-sidebar-nav__section pr-md-3">
+          <li class="td-sidebar-nav__section-title">
+            <a href="/news" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Study Note</a>
+          </li>
+          <ul><li class="collapse show" id=""></li></ul>
+          <li class="td-sidebar-nav__section-title">
+            <a href="/about" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">About Me</a>
+          </li>
+          <ul><li class="collapse show" id=""></li></ul>
+    </ul>
   </nav>
 </div>
 
           </div>
           <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
               <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-                  <a href="/edit/master/pages/index.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="/issues/new?labels=question&title=Question:&body=Question on: /tree/master/pages/index.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
-<a href="/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
+                  <a href="https://github.com/wyk2796/edit/master/pages/index.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="https://github.com/wyk2796/issues/new?labels=question&title=Question:&body=Question on: https://github.com/wyk2796/tree/master/pages/index.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+<a href="https://github.com/wyk2796/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 <!-- this will parse through the header fields and add a button to open
      an issue / ask a question on Github. The editable field should be in
      the post frontend matter, and refer to the label to open the issue for -->
@@ -308,63 +325,7 @@ $.each(headers, function(i, header){
 
 	
               
-              <!-- <style>
-  .feedback--answer {
-    display: inline-block;
-  }
-  .feedback--answer-no {
-    margin-left: 1em;
-  }
-  .feedback--response {
-    display: none;
-    margin-top: 1em;
-  }
-  .feedback--response__visible {
-    display: block;
-  }
-</style>
-<h5 class="feedback--title">Feedback</h5>
-<p class="feedback--question">Was this page helpful?</p>
-<button class="feedback--answer feedback--answer-yes">Yes</button>
-<button class="feedback--answer feedback--answer-no">No</button>
-<p class="feedback--response feedback--response-yes">
-  Glad to hear it! Please <a href="/issues/new">tell us how we can improve</a>.
-</p>
-<p class="feedback--response feedback--response-no">
-  Sorry to hear that. Please <a href="/issues/new">tell us how we can improve</a>.
-</p>
-<script>
-  const yesButton = document.querySelector('.feedback--answer-yes');
-  const noButton = document.querySelector('.feedback--answer-no');
-  const yesResponse = document.querySelector('.feedback--response-yes');
-  const noResponse = document.querySelector('.feedback--response-no');
-  const disableButtons = () => {
-    yesButton.disabled = true;
-    noButton.disabled = true;
-  };
-  const sendFeedback = (value) => {
-    if (typeof ga !== 'function') return;
-    const args = {
-      command: 'send',
-      hitType: 'event',
-      category: 'Helpful',
-      action: 'click',
-      label: window.location.pathname,
-      value: value
-    };
-    ga(args.command, args.hitType, args.category, args.action, args.label, args.value);
-  };
-  yesButton.addEventListener('click', () => {
-    yesResponse.classList.add('feedback--response__visible');
-    disableButtons();
-    sendFeedback(1);
-  });
-  noButton.addEventListener('click', () => {
-    noResponse.classList.add('feedback--response__visible');
-    disableButtons();
-    sendFeedback(0);
-  });
-</script><br/>
+              <!-- <br/>
 
  -->
            </div>
@@ -381,7 +342,7 @@ $.each(headers, function(i, header){
 <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
 <ul class="list-inline mb-0">  
   <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="GitHub" data-original-title="GitHub">
-    <a class="text-white" target="_blank" href="">
+    <a class="text-white" target="_blank" href="https://github.com/wyk2796">
       <i class="fab fa-github"></i>
     </a>
   </li>

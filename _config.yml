@@ -29,12 +29,14 @@ url: "" # the base hostname & protocol for your site
 # Social (First three Required)
 github_user: "yukai wu"
 github_repo: "yukai wu"
-
-# Optional
+repo: https://github.com/wyk2796
 linkedin: yukai
+linkedinUrl: https://www.linkedin.com/in/yukai-wu-b50ba7b8
+# Optional
+
 
 # Should there be feedback buttons at the bottom of pages?
-feedback: true
+feedback: false
 
 # Link to a privacy policy in footer, uncomment and define if wanted
 # privacy: https://domain.com/privacy

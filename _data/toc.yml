@@ -1,7 +1,10 @@
-- title: About Me
-  url: about
-- title: Study Note
-  url: "news"
+- title: List
+  url: ""
+  links:
+    - title: "Study Note"
+      url: "news"
+    - title: "About Me"
+      url: "about"
 # - title: Documentation
 #   url: docs
 #   links:

@@ -6,12 +6,7 @@
      <changefreq>daily</changefreq>
     </url>
 <url>
-     <loc>about/</loc>
-     <lastmod>2020-01-10</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-<url>
-     <loc>news/</loc>
+     <loc>/</loc>
      <lastmod>2020-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
