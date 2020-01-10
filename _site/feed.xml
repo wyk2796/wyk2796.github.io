@@ -1,57 +1,350 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docsy Jekyll</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</description>
-    <link>http://localhost:4000/docsy-jekyll/</link>
-    <atom:link href="http://localhost:4000/docsy-jekyll/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 08 Jan 2020 16:35:45 -0500</pubDate>
-    <lastBuildDate>Wed, 08 Jan 2020 16:35:45 -0500</lastBuildDate>
+    <title>Yukai Wu</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 09 Jan 2020 21:42:43 -0500</pubDate>
+    <lastBuildDate>Thu, 09 Jan 2020 21:42:43 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
-        <title>Two Thousand Nineteen</title>
-        <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 28 Jun 2019 14:52:21 -0400</pubDate>
-        <link>http://localhost:4000/docsy-jekyll/2019/hello-world/</link>
-        <guid isPermaLink="true">http://localhost:4000/docsy-jekyll/2019/hello-world/</guid>
-        
-        
-        <category>jekyll</category>
-        
-        <category>update</category>
-        
-      </item>
-    
-      <item>
-        <title>Welcome to MkDocs Jekyll</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+        <title>Function approximation</title>
+        <description>&lt;h3 id=&quot;introduce&quot;&gt;Introduce&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;The &lt;strong&gt;policy&lt;/strong&gt;, &lt;strong&gt;value function&lt;/strong&gt; and &lt;strong&gt;model&lt;/strong&gt; are all functions&lt;/li&gt;
+  &lt;li&gt;We want to learn (one of) these from experience&lt;/li&gt;
+  &lt;li&gt;If there are too many states, we need to approximate&lt;/li&gt;
+  &lt;li&gt;In general, this is called RL with function approximation&lt;/li&gt;
+  &lt;li&gt;When using deep neural nets, this is often called deep reinforcement learning&lt;/li&gt;
+  &lt;li&gt;The term is fairly new — the combination is decades old&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;!--more--&gt;
+&lt;h3 id=&quot;value-function-approximation&quot;&gt;Value Function Approximation&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;lookup tables&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Every state $s$ has an entry $q(s,a)$&lt;/li&gt;
+      &lt;li&gt;Or every state-action pair $s,a$ has an entry $q(s,a)$&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Large MDPs:
+    &lt;ul&gt;
+      &lt;li&gt;There are too many states and/or actions to store in memory&lt;/li&gt;
+      &lt;li&gt;It is too slow to learn the value of each state individually&lt;/li&gt;
+      &lt;li&gt;Individual states are often &lt;strong&gt;not fully observable&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Solution for large MDPs:
+    &lt;ul&gt;
+      &lt;li&gt;Estimate value function with &lt;strong&gt;function approximation&lt;/strong&gt;
+ &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+v_\theta(s)\approx v_\pi(s) \qquad &amp;(or, v_*(s)) \\
+q_\theta(s,a)\approx q_\pi(s,a) \qquad &amp;(or,q_*(s,a))
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Generalise&lt;/strong&gt; from seen states to unseen states&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Update&lt;/strong&gt; parameter $\theta$ using MC or TD observable&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If the environement state is not fully observable:
+    &lt;ul&gt;
+      &lt;li&gt;Use the &lt;strong&gt;agent state&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Consider learning a &lt;strong&gt;state update function&lt;/strong&gt; $S_{t+1}=u(S_t,O_{t+1})$&lt;/li&gt;
+      &lt;li&gt;Henceforth, $S_t$ denotes the agent state&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;h3 id=&quot;which-function-approximator&quot;&gt;Which Function Approximator?&lt;/h3&gt;
+&lt;p&gt;There are many function approximators, e.g.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Artificial neural network&lt;/li&gt;
+  &lt;li&gt;Decision tree&lt;/li&gt;
+  &lt;li&gt;Nearest neighbour&lt;/li&gt;
+  &lt;li&gt;Fourier / wavelet bases&lt;/li&gt;
+  &lt;li&gt;Coarse coding&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;In principle, &lt;strong&gt;any&lt;/strong&gt; function approximator can be used, but RL has specific properties:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Experience is not i.i.d — successive time-step are correlated&lt;/li&gt;
+  &lt;li&gt;Agent’s policy affects the data it receives&lt;/li&gt;
+  &lt;li&gt;Value functions $v_\pi(s)$ can be non-stationary&lt;/li&gt;
+  &lt;li&gt;Feedback is delayed, not instantaneous&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;classes-of-function-approximation&quot;&gt;Classes of Function Approximation&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;Tabular: a table with an entry for each MDP state&lt;/li&gt;
+  &lt;li&gt;State aggregation: Partition environment states&lt;/li&gt;
+  &lt;li&gt;Linear function approximate: fixed feature (or fixed kernel)&lt;/li&gt;
+  &lt;li&gt;Differentiable (nonlinear) function approximation: neural nets&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;approximate-values-by-stochastic-gradient-descent&quot;&gt;Approximate Values By Stochastic Gradient Descent&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;Goal: fins $\theta$ that minimise the difference between $v_\theta(s)$ and $v_\pi(s)$ 
+&lt;script type=&quot;math/tex&quot;&gt;J(\theta)=\mathbb{E}[(v_\pi(S)-v_\theta(S))^2]&lt;/script&gt;
+      Note: The expectation if over the state distribution — e.g., induced by the policy&lt;/li&gt;
+  &lt;li&gt;Gradient descent:
+&lt;script type=&quot;math/tex&quot;&gt;\Delta\theta=-\frac{1}{2}\alpha\nabla_\theta J(\theta)=\alpha\mathbb{E}[(v_\pi(S)-v_\theta(S))\nabla_\theta v_\theta(S)]&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Stochastic&lt;/strong&gt; gradient descent
+&lt;script type=&quot;math/tex&quot;&gt;\Delta\theta_t=\alpha(v_\pi(S_t)-v_\theta(S_t))\nabla_\theta v_\theta(S_t)&lt;/script&gt;
+    &lt;h3 id=&quot;feature-vectors&quot;&gt;Feature Vectors&lt;/h3&gt;
+    &lt;hr /&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Represent state by a &lt;strong&gt;feature vector&lt;/strong&gt; 
+&lt;script type=&quot;math/tex&quot;&gt;\phi(s) = \left(\begin{array}{cc}
+\phi_1(s) \\ \vdots \\ \phi_n(s)
+\end{array}\right)&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;$\phi:S\rightarrow\mathbb{R}^n$ is a fixed mapping from state (e.g. observation) to features&lt;/li&gt;
+  &lt;li&gt;Short-hand: $\phi_t=\phi(S_t)$&lt;/li&gt;
+  &lt;li&gt;For example:
+    &lt;ul&gt;
+      &lt;li&gt;Distance of robot from landmarks&lt;/li&gt;
+      &lt;li&gt;Trends in the stock market&lt;/li&gt;
+      &lt;li&gt;Piece and pawn configurations in chess&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h3 id=&quot;approximate-values-by-stochastic-gradient-descent-1&quot;&gt;Approximate Values By Stochastic Gradient Descent&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;Goal: fina $\theta$ that minimise the difference between $v_\theta(s)$ and $v_\pi(s)$
+&lt;script type=&quot;math/tex&quot;&gt;J(\theta)=\mathbb{E}[(v_\pi(S)-v_\theta(S))^2]&lt;/script&gt;
+      Note: The expectation if over the state distribution — e.g., induced by the policy.&lt;/li&gt;
+  &lt;li&gt;Gradient desent:
+&lt;script type=&quot;math/tex&quot;&gt;\Delta\theta=-\frac{1}{2}\alpha\Delta_\theta J(\theta)=\alpha\mathbb{E}_\pi p[(v_\pi(S)-v_\theta(S))\nabla_\theta v_\theta(S)]&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Stochastic&lt;/strong&gt; gradient descent:
+&lt;script type=&quot;math/tex&quot;&gt;\Delta\theta_t=\alpha(v_\pi(S_t)-v_\theta(S_t))\nabla_\theta v_\theta(S_t)&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;linear-value-function-approximation&quot;&gt;Linear Value Function Approximation&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Approximate value function by a linear combination of features
+&lt;script type=&quot;math/tex&quot;&gt;v_\theta(s)=\theta^\top \phi(s)=\sum_{j=1}^n\phi_j(s)\theta_j&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Objective function (‘loss’) is quadratic in $\theta$
+&lt;script type=&quot;math/tex&quot;&gt;J(\theta)=\mathbb{E}_\pi\big[(v_\pi(S)-\theta^\top\phi(S))^2\big]&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Stichastic gradient descent converges on global ooptimum&lt;/li&gt;
+  &lt;li&gt;Update rule is simple
+&lt;script type=&quot;math/tex&quot;&gt;\nabla_\theta v_\theta(S_t)=\phi(S_t)=\phi_t \quad \Longrightarrow \quad \Delta_\theta = \alpha(v_\pi(S_t)-v_\theta(S_t))\phi_t&lt;/script&gt;
+      $\large \text{Update}=\textbf{step size}\times\textbf{prediction error}\times\textbf{feature vector}$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;incremental-prediction-algorithms&quot;&gt;Incremental Prediction Algorithms&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;The true value function $v_\pi(s)$ is typically not available&lt;/li&gt;
+  &lt;li&gt;In practice, we substitute a &lt;strong&gt;target&lt;/strong&gt; for $v_\pi(s)$
+    &lt;ul&gt;
+      &lt;li&gt;For MC, the target is the return $G_t$
+&lt;script type=&quot;math/tex&quot;&gt;\Delta\theta_t=\alpha(\textcolor{red}{G_t} - v_\theta(s))\nabla_\theta v_\theta(s)&lt;/script&gt;&lt;/li&gt;
+      &lt;li&gt;For TD, the target is the TD target $R_{t+1}+\gamma v_\theta(S_{t+1})$
+&lt;script type=&quot;math/tex&quot;&gt;\Delta\theta_t=\alpha(\textcolor{red}{R_{t+1}+\gamma v_\theta(S_{t+1})} - v_\theta(S_t))\nabla_\theta v_\theta(S_t)&lt;/script&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;monte-carlo-with-value-function-approximation&quot;&gt;Monte-Carlo with Value Function Approximation&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;The return $G_t$ is an unbiased, noisy sample of $v_\pi(s)$&lt;/li&gt;
+  &lt;li&gt;Can therefore apply supervised learning to (online) “training data”
+&lt;script type=&quot;math/tex&quot;&gt;{(S_0,G_0),\ldots,(S_t,G_t)}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;For example, using &lt;strong&gt;linear Monte-Carlo policy evaluation&lt;/strong&gt;
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+\Delta\theta_t &amp;=\alpha(\textcolor{red}{G_t} - v_\theta(S_t))\nabla_\theta v_\theta(S_t) \\
+&amp; = \alpha(G_t - v_\theta(S_t))\phi_t
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Monte-Carlo evaluation converges to a local optimum&lt;/li&gt;
+  &lt;li&gt;Even when using non-linear value function approximation&lt;/li&gt;
+  &lt;li&gt;For linear function, it finds the globlal optimum&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;td-learning-with-value-function-approximation&quot;&gt;TD Learning with Value Function Approximation&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;The TD-target $R_{t+1}+\gamma v_\theta(S_{t+1})$ is a &lt;strong&gt;biased&lt;/strong&gt; sample og true value $v_\pi(S_t)$&lt;/li&gt;
+  &lt;li&gt;Can still apply supervised learning to “training data”
+&lt;script type=&quot;math/tex&quot;&gt;{(S_0,R_1+\gamma v_\theta(S_1)),\ldots,(S_t,R_{t+1}+\gamma v_\theta(S_{t+1}))}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;For example, using linear TD
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+\Delta\theta_t &amp;= \alpha\underbrace{(\textcolor{red}{R_{t+1}+\gamma v_\theta(S_{t+1})}-v_\theta(S_t))}_{\normalsize =\delta_t, \text{TD error}}\nabla_\theta v_\theta(S_t) \\
+&amp; =\alpha\delta_t\phi_t
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;convergence-of-mc-and-td&quot;&gt;Convergence of MC and TD&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;with linear functions, MC converges to
+&lt;script type=&quot;math/tex&quot;&gt;\min_\theta\mathbb{E}\big[(G_t-v_\theta(S_t))^2\big]=\mathbb{E}\big[\phi_t\phi_t^\top\big]^{-1}\mathbb{E}\big[v_\pi(S_t)\phi_t\big]&lt;/script&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;With linear function, TD converges to
+&lt;script type=&quot;math/tex&quot;&gt;\min_\theta\mathbb{E}\big[(R_{t+1}+\gamma v_\theta(S_{t+1}-v_\theta(S_t)))^2\big]=\mathbb{E}\big[\phi_t(\phi_t-\gamma\phi_{t+1})^\top\big]\mathbb{E}\big[R_{t+1}\phi_t\big]&lt;/script&gt;
+      (in continuing problem with fixed $\gamma$)&lt;/li&gt;
+  &lt;li&gt;This is a different solution from MC&lt;/li&gt;
+  &lt;li&gt;Typically, the asymptotic MC solution is preferred&lt;/li&gt;
+  &lt;li&gt;But TD methods may converge faster, and may still be better
+&lt;script type=&quot;math/tex&quot;&gt;\textbf{TD:}\quad\Delta_t=\alpha\delta\nabla_\theta v_\theta(S_t)\quad \textbf{where} \quad \delta_t=R_{t+1}+\gamma v_\theta(S_{t+1}-v_\theta(S_t))&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;This update ignores dependence of $v_\theta(S_{t+1})$ on $\theta$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;action-value-function-approximation&quot;&gt;Action-Value Function Approximation&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Approximate the action-value function
+&lt;script type=&quot;math/tex&quot;&gt;q_\theta(s,a)\approx q_\pi(S,a)&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;For instance, with linear function approximation
+&lt;script type=&quot;math/tex&quot;&gt;q_\theta(s,a)=\phi(s,a)_\top\theta=\sum_{j=1}^n\phi_j(s,a)\theta_j&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Stochastic gradient descent update
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+\Delta\theta &amp;= \alpha(q_\pi(s,a)-q_\theta(s,a))\nabla_\theta q_\theta(s,a) \\
+&amp;= \alpha(q_\pi(s,a)-q_\theta(s,a))\phi(s,a)
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;least-squarse-prediction&quot;&gt;Least Squarse Prediction&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;Given value function approximation $v_\theta(s) \approx v_\pi(s)$&lt;/li&gt;
+  &lt;li&gt;And &lt;strong&gt;experience&lt;/strong&gt; $\mathcal{D}$ consisting of $\large \langle \text{state, estimated value} \rangle$pairs
+&lt;script type=&quot;math/tex&quot;&gt;\mathcal{D}=\big\{\langle S_1,\hat{v}_1^\pi \rangle,\langle S_2,\hat{v}_2^\pi \rangle,\ldots,\langle S_T,\hat{v}_T^\pi \rangle \big\}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;E.g., $\large \hat{V}&lt;em&gt;1^\pi=R&lt;/em&gt;{t+1}+\gamma v_\theta(S_{t+1})$&lt;/li&gt;
+  &lt;li&gt;Which parameters $\theta$ give the best fitting value function $v_\theta(s)$?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;stochastic-gradient-descent-with-experience-replay&quot;&gt;Stochastic Gradient Descent with Experience Replay&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;Give experience consisting of $\large \langle \text{state, value} \rangle$pairs
+&lt;script type=&quot;math/tex&quot;&gt;\mathcal{D}=\big\{\langle S_1,\hat{v}_1^\pi \rangle,\langle S_2,\hat{v}_2^\pi \rangle,\ldots,\langle S_T,\hat{v}_T^\pi \rangle \big\}&lt;/script&gt;
+Repeat:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Sample state, value from experience
+&lt;script type=&quot;math/tex&quot;&gt;\langle s, \hat{v}_\pi  \rangle \sim \mathcal{D}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Apply stochastic gradient decent update
+&lt;script type=&quot;math/tex&quot;&gt;\Delta\theta = \alpha(\hat{v}^\pi - v_\theta(s))\nabla_\theta v_\theta(s)&lt;/script&gt;
+Converges to least squares solution
+&lt;script type=&quot;math/tex&quot;&gt;\theta_\pi=\mathop{\text{argmin}}\limits_\theta LS(\theta)=\mathop{\text{argmin}}\limits_\theta\mathbb{E}_\mathcal{D}\big[(\hat{v}_i^\pi-v_\theta(S_i))^2\big]&lt;/script&gt;
+    &lt;h3 id=&quot;linear-least-squares-prediction&quot;&gt;Linear Least Squares Prediction&lt;/h3&gt;
+    &lt;hr /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Experience replay finds least squares solution&lt;/li&gt;
+      &lt;li&gt;But it may take many iterations&lt;/li&gt;
+      &lt;li&gt;Using &lt;strong&gt;linear&lt;/strong&gt; value function approximation $v_\theta(s)=\phi(s)^\top\theta$ we can solve the least squares solution directly&lt;/li&gt;
+      &lt;li&gt;At minimum of $LS(\theta)$, the expected update must be zero
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+\mathbb{E}_\mathcal{D}[\Delta\theta] &amp;= 0 \\
+\alpha\sum_{t=1}^T\phi_t(\hat{v}_t^\pi-\phi_t^\top\theta) &amp;= 0 \\
+\sum_{t=1}^T\phi_t\hat{v}_t^\pi &amp;= \sum_{t=1}^T\phi_t\phi_t^\top\theta \\
+\theta_t &amp;= \Big(\sum_{t=1}^T\phi_t\phi_t^\top\Big)^{-1}\sum_{t=1}^T\phi_t\hat{v}_t^\pi
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/li&gt;
+      &lt;li&gt;For N feature, direct solution time is $O(N^3)$&lt;/li&gt;
+      &lt;li&gt;Incremental solution time is $O(N^2)$ using Shermann-Morrison&lt;/li&gt;
+      &lt;li&gt;We do not know true values $v_\pi$ (have estimates $\hat{v}_t$)&lt;/li&gt;
+      &lt;li&gt;In practice, our “training data” must use noisy or biased sample of $v_\pi$&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;      &amp;lt;font color=blue&amp;gt;&lt;strong&gt;LSMC&lt;/strong&gt;&amp;lt;/font&amp;gt; Least Squares Monte-Carlo uses return
+&lt;script type=&quot;math/tex&quot;&gt;v_\pi \approx \textcolor{red}{G_t}&lt;/script&gt;
+      &amp;lt;font color=blue&amp;gt;&lt;strong&gt;LSTD&lt;/strong&gt;&amp;lt;/font&amp;gt; Least Squares Temporal-Difference uses TD target
+&lt;script type=&quot;math/tex&quot;&gt;v_\pi \approx \textcolor{red}{R_{t+1} + \gamma v_\theta(S_{t+1})}&lt;/script&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;In each case we can solve directly for the fixed poine&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;deep-reinforcement-learning&quot;&gt;Deep reinforcement learning&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;Many ideas immediately transfer when using deep neural networks:
+    &lt;ul&gt;
+      &lt;li&gt;TD and MC&lt;/li&gt;
+      &lt;li&gt;Double learning (e.g., double Q-learning)&lt;/li&gt;
+      &lt;li&gt;Experience replay&lt;/li&gt;
+      &lt;li&gt;…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Some ideas do not easily transfer
+    &lt;ul&gt;
+      &lt;li&gt;UCB&lt;/li&gt;
+      &lt;li&gt;Least squares TD/MC&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;neural-q-learning&quot;&gt;Neural Q-learning&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;Online neural Q-learning may include:
+    &lt;ul&gt;
+      &lt;li&gt;A &lt;strong&gt;network&lt;/strong&gt; $q_\theta:\medspace O_t \Longrightarrow (q[1],\ldots,q[m])(m\space \text{actions})$&lt;/li&gt;
+      &lt;li&gt;An $\epsilon-\text{greedy}$ &lt;strong&gt;exploration policy&lt;/strong&gt;: $q_t\medspace \Longrightarrow \medspace \pi_t \Longrightarrow \medspace A_t$&lt;/li&gt;
+      &lt;li&gt;A Q-learning &lt;strong&gt;loss function&lt;/strong&gt; on $\theta$
+&lt;script type=&quot;math/tex&quot;&gt;I(\theta)=\frac{1}{2}\Big(R_{t+1}+\gamma\Big[\max_a q_\theta (S_{t+1},a)\Big] - q_\theta (S_t, A_t)\Big)^2&lt;/script&gt;
+where $[\cdot ]$ denotes stopping the gradient, so that the gradient is 
+&lt;script type=&quot;math/tex&quot;&gt;\nabla_\theta I(\theta)=\Big(R_{t+1}+\gamma\max_a q_\theta(S_{t+1},a)-q_\theta(S_t,A_t)\Big)\nabla_\theta q_\theta(S_t,A_t)&lt;/script&gt;&lt;/li&gt;
+      &lt;li&gt;An &lt;strong&gt;optimizer&lt;/strong&gt; to minimize the loss (e.g., SGD, RMSProp, Adma)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dqn&quot;&gt;DQN&lt;/h3&gt;
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DQN (Mnih et al. 2013, 2015) includes;
+    &lt;ul&gt;
+      &lt;li&gt;A &lt;strong&gt;network&lt;/strong&gt; $q_\theta:\medspace O_t \mapsto (q[1],\ldots,q[m])(m\space \text{actions})$&lt;/li&gt;
+      &lt;li&gt;An $\epsilon-\text{greedy}$ &lt;strong&gt;exploration policy&lt;/strong&gt;: $q_t\medspace \mapsto \medspace \pi_t \Longrightarrow \medspace A_t$&lt;/li&gt;
+      &lt;li&gt;A &lt;strong&gt;replay buffer&lt;/strong&gt; to store and sample past transitions&lt;/li&gt;
+      &lt;li&gt;A &lt;strong&gt;target network&lt;/strong&gt; $q_{\theta^-}:\medspace Q_t \mapsto\space(q^-[1],\ldots,q^-[m])$&lt;/li&gt;
+      &lt;li&gt;A Q-learning &lt;strong&gt;loss function&lt;/strong&gt; on $\theta$ (use replay and target network) 
+&lt;script type=&quot;math/tex&quot;&gt;I(\theta)=\frac{1}{2}\Big(R_{t+1}+\gamma\Big[\max_a q_{\theta^-} (S_{t+1},a)\Big] - q_\theta (S_t, A_t)\Big)^2&lt;/script&gt;&lt;/li&gt;
+      &lt;li&gt;An &lt;strong&gt;optimizer&lt;/strong&gt; to minimize the loss (e.g., SGD, RMSProp, Adma)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Replay and target networks make RL look more like supervised learning&lt;/li&gt;
+  &lt;li&gt;It is unclear whether they are vital, but they help&lt;/li&gt;
+  &lt;li&gt;“DL-aware RL”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;n-step-return&quot;&gt;n-Step Return&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Consider the following n-steps returns for $n=1,2,\infin:$
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{alignedat}a
+&amp;n=1 \quad &amp;(TD)\quad &amp; G_T^{(1)}=R_{t+1} + \gamma v(S_{t+1}) \\
+&amp;n=2 \quad &amp;\quad &amp; G_T^{(2)}=R_{t+1} + \gamma R_{t+2} +\gamma^2 v(S_{t+2}) \\
+&amp;\quad \vdots \quad &amp;\quad &amp; \vdots \\
+&amp;n=\infin \quad &amp;(MC)\quad &amp; G_T^{(\infin)}=R_{t+1} + \gamma R_{t+2}+\ldots+\gamma^{T-t-1}R_T
+\end{alignedat} %]]&gt;&lt;/script&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Define the n-step return
+&lt;script type=&quot;math/tex&quot;&gt;G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + \ldots + \gamma^{n-1} R_{t+n} + \gamma^n v(S_{t+n})&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;n-step temporal-difference learning
+&lt;script type=&quot;math/tex&quot;&gt;v(S_t) \leftarrow v(S_t) + \alpha\Big(G_t^{(n)} - v(S_t)\Big)&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
-        <pubDate>Fri, 28 Jun 2019 06:52:21 -0400</pubDate>
-        <link>http://localhost:4000/docsy-jekyll/2019/welcome/</link>
-        <guid isPermaLink="true">http://localhost:4000/docsy-jekyll/2019/welcome/</guid>
+        <pubDate>Sun, 12 May 2019 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2019/Function-Approximation/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/Function-Approximation/</guid>
         
-        
-        <category>jekyll</category>
-        
-        <category>update</category>
         
       </item>
     
