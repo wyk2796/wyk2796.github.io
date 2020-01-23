@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>
   <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,7 +43,15 @@
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.css" integrity="sha384-bsHo4/LA+lkZv61JspMDQB9QP1TtO4IgOf2yYS+J6VdAYLVyx1c3XKcsHh0Vy8Ws" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.js" integrity="sha384-4z8mjH4yIpuK9dIQGR1JwbrfYsStrNK6MP+2Enhue4eyo0XlBDXOIPc8b6ZU0ajz" crossorigin="anonymous"></script>
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>  
+
 </head>
 
   
@@ -85,14 +97,14 @@
   </div>
 
 </nav>
-<!-- <script type="text/x-mathjax-config">
+<script type="text/x-mathjax-config">
   MathJax.Hub.Config({
-                    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+                    tex2jax: {inlineMath: [['$','$']]}
                             });
   </script>
   <script type="text/javascript"
     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script> -->
+</script>
 </header>
 
 
@@ -169,11 +181,13 @@ $(document).ready(function() {
            </nav>
            <div class="td-content">
 	      <h1 id="yukai-wu">YuKai Wu</h1>
-<h3 id="email-ywu048fiuedu">email: ywu048@fiu.edu</h3>
+<p>email: ywu048@fiu.edu 
+call: 7866083426</p>
+
 <h3 id="education">EDUCATION</h3>
 <ul>
-  <li>2009.09—2013.07 AnQing Normal University (bachelor’s degree), major Information and Computing Science</li>
-  <li>2018.05—2019.12 Florida International University, major computer science</li>
+  <li>2009.09—2013.07 AnQing Normal University (bachelor degree), major Information and Computing Science</li>
+  <li>2018.05—2019.12 Florida International University (master degree), major computer science</li>
 </ul>
 
 <h3 id="professional-experience">PROFESSIONAL EXPERIENCE</h3>
@@ -181,56 +195,56 @@ $(document).ready(function() {
   <li>
     <h5 id="20159--20181---hangzhou-shuyun-information-science-corporation-algorithm-engineer">2015.9 – 2018.1   HangZhou ShuYun Information Science Corporation (Algorithm Engineer)</h5>
     <ul>
-      <li><strong>Design and Development of Recommend System for commodities</strong><br />
-Develop a framework for Recommendation System, It can train model from users features data and generates a list of recommendation commodities. In this project, My duty is to develop a back-end part that can get data from several recommendation list and merge them by specific algorithm, final push them to user end. I’m also in charge with developing some recommendation algorithms suit for a particular scenario.  This recommendation framework mainly serves the advertising business</li>
+      <li><strong>Design and Development of Recommendation System for commodities</strong>
+The company started to develop a framework for Recommendation System which can train model from users features data and generates a list of recommendation commodities. In this project, My duty is to develop a back-end part that can get data from several recommendation lists and merge them by specific algorithm, finally push them to user end. I’m also in charge with developing some recommendation algorithms for some particular scenarios.  This recommendation framework mainly serves the advertising business.</li>
       <li><strong>Design and Development of TaoBao, TMall User Portrait System</strong><br />
-Depend on user shopping records, I establish a label system for each user to represent user feature space. Such as Preference for Clothes, Preference for Cosmetics, Preference for Food  etc. This system can easily group users into several category and improve the precise of recommendation system.</li>
+Depending on user shopping records, I establish a label system, representing user feature space, for all of them, such as Preference for Clothes, Preference for Cosmetics, Preference for Food etc. It is advantageous to divide group users into several categories and improve the precise of recommendation system.</li>
       <li><strong>Analysis user comment data with NLP</strong><br />
-The company need extract short label from user comment to help our customer well understand what is the user feeling about their product. I use RNN with attention model to extract the key information in the short comment, and then analyse these data and display the result.</li>
+The company needs to extract short labels from user comments to help our customers fully understand what the user feel about their product. I use RNN with attention model to extract the key information in the short comment, analyse these data and display the results.</li>
     </ul>
   </li>
   <li>
     <h5 id="20156--20158----shanghai-yichen-information-science-corporation-big-data-development-engineer">2015.6 – 2015.8	   ShangHai YiChen Information Science Corporation (Big Data Development Engineer)</h5>
     <ul>
       <li><strong>Design and Development of Recommendation System for short videos</strong><br />
- We store user’s history data in Hive, and then we train the Recommendation Models with Spark and store them in HDFS. We develop a frame that automatically deploy the trained models that load from HDFS, and recommend short videos for users, putting the result into Hbase. The frame have RESTful API for responding the request from other front-end programme.</li>
+The company started to establish recommendation system. what I do is storing user’s history data in Hive, training the Recommendation Models with Spark and storing those models in HDFS. I develop a framework that automatically deploys the trained models that had been loaded in HDFS. Recommending short videos for users and putting the results into Hbase are my next work. The frame has RESTful API for responding the request from other front-end programme.</li>
     </ul>
   </li>
   <li>
     <h5 id="20145--20155-----anhui-xiangxing-information-science-corporation-data-mining-engineer">2014.5 – 2015.5	    ANHUI XiangXing Information Science Corporation (Data Mining Engineer)</h5>
     <ul>
       <li><strong>Development of Data Mining System Based on Spark Framework</strong><br />
-The company want to develop a cloud computing platform for the enterprise to help them analyse huge amount of data. So our task is to integrate Spark into our System, and extend the function and algorithm of MLlib.</li>
+The company wants to create a cloud computing platform for the enterprise that is beneficial for them to analyse huge amount of data. Therefore, my task is to integrate Spark into this System and extend the function and algorithm of MLlib.</li>
       <li><strong>Data Modeling of Customer Loss with Anhui Telecom User Data</strong><br />
-Help our customer to build a ML model to predict whether the user would lost or not in the next mouth.  The Telecom company give us lots of user  behavior data without sensitive part.  The label is binary, meaning whether the user would lost in next month.  We use previous four month data to extract the user’s feature, and then input the features into model to predict the user situation in next month.</li>
+Help our customer to build a ML model to predict whether the user would lost or not in the next mouth.  The Telecom company gives me lots of user behavior data without sensitive part.  The label is binary, meaning whether the user would lost in next month. I use previous four-month data to extract the user’s feature, and then input the features into model to predict the user’s situation in next month.</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="research--field-work-experience">RESEARCH / FIELD WORK EXPERIENCE</h3>
+<h3 id="research--project-experience">RESEARCH / PROJECT EXPERIENCE</h3>
 <ul>
-  <li><a href="https://github.com/wyk2796/reinforcement_learning"><strong>Reinforcement Learning Project:</strong></a>
+  <li>2019 <strong>Reinforcement Learning Project:</strong> (<a href="https://github.com/wyk2796/reinforcement_learning">Git-Repo</a>) <strong>:</strong>
     <ul>
-      <li><strong>Navigation</strong>: Training a agent to learn how to get maximum bananas in one episode,  using the Deep Q-Network(DQN) Algorithm.</li>
-      <li><strong>Reacher</strong>: Training a robot arm to quickly catch a target.  In this project, I use the Deep Deterministic Policy Gradient(DDPG) with continuous action space to train 20 virtual agents simultaneously to reduce the training time.</li>
-      <li><strong>Tennis</strong>: Two players compete each other. The project is training two agents to play the tennis game and against each other. I learn how to use the DDPG to train multi-agents in competitive environment.</li>
-      <li><strong>Half Field Offense in <a href="https://github.com/LARG/HFO">Robocup 2D Soccer</a></strong>: Training a agent to kick the ball to the goal. This environment action space is parameterized action space. It combine the discrete value and the continuous value.</li>
+      <li><strong>Navigation</strong>: Training an agent to learn how to get maximum bananas in one episode,  using the Deep Q-Network(DQN) Algorithm.</li>
+      <li><strong>Reacher</strong>: Training a robot arm to quickly catch a target object. In this project, I use the Deep Deterministic Policy Gradient(DDPG) with continuous action space to train 20 virtual agents simultaneously to reduce the training time.</li>
+      <li><strong>Tennis</strong>: Two players compete with each other. The project is training two agents to play the tennis game. I use the DDPG to train multi-agents in competitive environment.</li>
+      <li><strong>Half Field Offense in <a href="https://github.com/LARG/HFO">Robocup 2D Soccer</a></strong>: Training an agent to kick the ball to the goal. This environment action space is parameterized action space which combines the discrete value and the continuous value.</li>
     </ul>
   </li>
   <li>
-    <p><a href="https://github.com/wyk2796/NLP_learning"><strong>NLP Project:</strong></a>
-We use four kind of algorithms to complete Name Entity Recognition(NER) task and compare them. <a href="https://github.com/wyk2796/NLP_learning/blob/master/doc/ner.pdf">(paper)</a></p>
+    <p>2018 <strong>NLP Project</strong> (<a href="https://github.com/wyk2796/NLP_learning">Git-Repo</a>, <a href="https://github.com/wyk2796/NLP_learning/blob/master/doc/ner.pdf">Paper</a>) <strong>:</strong>
+We use four kinds of algorithms to complete Name Entity Recognition(NER) task and compare them.</p>
   </li>
   <li>
-    <p><a href="https://github.com/wyk2796/image_processes_style_transform"><strong>Image Process:</strong></a>
-For this project, our target is to display the intermediate processes of image-style transformation, how to transform a photo from a original photo to a style photo and what the processes look like. We use VGG19 and transform net (Johnson, J. et al. 2016) to train model for image-style transformation. In each layer of transform net, we use DeconvNet to get visible image from intermediate data to display the changing process. <a href="https://github.com/wyk2796/image_processes_style_transform/blob/master/The%20visualization%20of%20Deep%20Neural%20Network.pdf">(report)</a></p>
+    <p>2019 <strong>Image Process</strong> (<a href="https://github.com/wyk2796/image_processes_style_transform">Git-Repo</a>, <a href="https://github.com/wyk2796/image_processes_style_transform/blob/master/The%20visualization%20of%20Deep%20Neural%20Network.pdf">Report</a>) <strong>:</strong>
+For this project, My target is to display the intermediate processes of image-style transformation, how to transform a photo from a original photo to a style photo and what the processes look like. I use VGG19 and transform-net (Johnson, J. et al. 2016) to train model for image-style transformation. In each layer of transform-net, I use DeconvNet to get visible image from intermediate data to display the changing process.</p>
   </li>
   <li>
-    <p><strong>Distributed Framework:</strong>
-It is a distributed system framework and has a master and various pluggable components. The pluggable components can design to divers function components. The master manage all components. The system has a pub-sub system to support communication between all components. The component can publish and subscribe topics. This project based on AKKA concurrency framework with Scala programm language. Here is a Distributed Web Crawler based on this distributed framework,  <strong><a href="https://github.com/wyk2796/crawlnet">“crawlnet”.</a></strong></p>
+    <p>2019 <strong>Distributed Framework:</strong>
+It is a distributed system framework and has a master and various plumbable components. The plumbable components can be designed to divers function components. The master manages all components. The system has a pub-sub system to support communication between all components. The component can publish and subscribe topics. This project is based on AKKA concurrency framework with Scala programm language. Here is a Distributed Web Crawler based on this distributed framework,  <strong>“crawlnet”</strong> (<a href="https://github.com/wyk2796/crawlnet">Git-Repo</a>).</p>
   </li>
-  <li><strong>Recommend System:</strong>
-The project target is to design and develop a recommend system to recommend commodity for users.  Our project’s architecture has four part. We use Hive as our data warehouse. It store all the order, user and commodity data. We use Spark to generate modes that used to recommend commodity and store the result into Hbase database. And then we design restful API to receive requests and return the recommendation commodities for users.</li>
+  <li>2015 <strong>Recommendation System</strong> (<a href="https://github.com/wyk2796/recommender">Git-Repo</a>) <strong>:</strong>
+The project target is to design and develop a recommendation system to recommend commodity for users. The architecture of the project includes four parts. I use Hive as my data warehouse that stores all orders data, user and commodities data. I use Spark to generate models used to recommend commodities and store the result into Hbase database. And then we design restful API to receive requests and return the recommendation commodities for users. The algorithm I use in this project is user-item interactions matrix, Collaborative filtering, and TF-IDF etc.</li>
 </ul>
 
 <h3 id="professional-skills">PROFESSIONAL SKILLS</h3>
@@ -283,7 +297,7 @@ The project target is to design and develop a recommend system to recommend comm
 <p><a href="https://confirm.udacity.com/3QPL96K">Udacity Nanodegree:</a></p>
 
 <h3 id="website">WEBSITE</h3>
-<p><a href="https://github.com/wyk2796">Github</a>, <a href="https://www.linkedin.com/in/yukai-wu-b50ba7b8">Linkedin</a></p>
+<p><a href="https://github.com/wyk2796">Github</a>, <a href="https://www.linkedin.com/in/yukai-wu-b50ba7b8">Linkedin</a>, <a href="https://wyk2796.github.io">Personal Website</a></p>
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

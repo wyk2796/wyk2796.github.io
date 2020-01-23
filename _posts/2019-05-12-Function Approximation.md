@@ -201,11 +201,11 @@ $$
 ### Least Squarse Prediction
 ---
 - Given value function approximation $v_\theta(s) \approx v_\pi(s)$
-- And **experience** $\mathcal{D}$ consisting of $\large \langle \text{state, estimated value} \rangle$pairs  
+- And **experience** $\mathcal{D}$ consisting of $\langle \text{state, estimated value} \rangle$pairs  
 $$
 \mathcal{D}=\big\{\langle S_1,\hat{v}_1^\pi \rangle,\langle S_2,\hat{v}_2^\pi \rangle,\ldots,\langle S_T,\hat{v}_T^\pi \rangle \big\}
 $$
-- E.g., $\large \hat{V}_1^\pi=R_{t+1}+\gamma v_\theta(S_{t+1})$
+- E.g., $\hat{V}\_1^\pi=R\_{t+1}+\gamma v\_\theta(S_{t+1})$
 - Which parameters $\theta$ give the best fitting value function $v_\theta(s)$?
 
 ### Stochastic Gradient Descent with Experience Replay

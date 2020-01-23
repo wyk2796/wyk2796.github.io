@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 10 Jan 2020 11:00:12 -0500</pubDate>
-    <lastBuildDate>Fri, 10 Jan 2020 11:00:12 -0500</lastBuildDate>
+    <pubDate>Wed, 22 Jan 2020 22:14:43 -0500</pubDate>
+    <lastBuildDate>Wed, 22 Jan 2020 22:14:43 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -32,11 +32,12 @@
 &lt;hr /&gt;
 &lt;h3 id=&quot;2-what-is-a-model&quot;&gt;2. What is a Model?&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;A model $\mathcal{M}&lt;em&gt;\eta$ is a representation of MDP $\langle \mathcal{S, A}, \hat{p}&lt;/em&gt;\eta \rangle$&lt;/li&gt;
+  &lt;li&gt;A model $\mathcal{M}_{\eta}\space\text{is a representation of MDP}\space\langle\mathcal{S,A},\hat{p}_{\eta}\rangle$&lt;/li&gt;
+  &lt;li&gt;$\space\langle\mathcal{S, A},\hat{p}_\eta\rangle$&lt;/li&gt;
   &lt;li&gt;For now, we will assume the states and actions are the same as in the real problem&lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The model &lt;strong&gt;approximates&lt;/strong&gt; the state transitions and rewards $\hat{p}_\eta\approx p$&lt;br /&gt;
-&lt;script type=&quot;math/tex&quot;&gt;R_{t+1}, S_{t+1} \sim \hat{p}_\eta (r, s'|S_t,A_t)&lt;/script&gt;&lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;R_{t+1}, S_{t+1} \sim \hat{p}_{\eta} (r, s'|S_t,A_t)&lt;/script&gt;&lt;br /&gt;
 (Note there is not probability distribution function)&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Optionally, we could model rewards and state dynamics separately&lt;/li&gt;
@@ -56,16 +57,7 @@ S_{T-1},A_{T-1} &amp;\rightarrow R_{T}, S_{T}
   &lt;li&gt;Learn a function $f(s,a) = r,s’$&lt;/li&gt;
   &lt;li&gt;Pick loss function (e.g. mean-squared error), and find parameters $\eta$ that minimise empirical loss&lt;/li&gt;
   &lt;li&gt;This would give an expectation model&lt;/li&gt;
-  &lt;li&gt;
-    &lt;table&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;If $f(s,a)=r,s’$, then we would hope $s’\approx \mathbb{E}[S_{t+1}&lt;/td&gt;
-          &lt;td&gt;s=S_t,a=A_t]$&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
+  &lt;li&gt;If $f(s,a)=r,s’$, then we would hope $s’\approx \mathbb{E}[S_{t+1}|s=S_t,a=A_t]$&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -421,7 +413,7 @@ Think of is as the ratio of time spent in $s$ under policy $\pi$&lt;/li&gt;
   &lt;li&gt;Goal is to compute&lt;br /&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\nabla_{\theta}J(\theta)=\nabla\mathbb{E}_{d}[v_{\pi_{\theta}}(s)]&lt;/script&gt;&lt;/li&gt;
   &lt;li&gt;We will use Monte Carlo samples to compute this gradient&lt;/li&gt;
-  &lt;li&gt;So, how does $\mathbb{E}&lt;em&gt;{d}[v&lt;/em&gt;{\pi_{\theta}}(S)]$ depend on $\theta$?&lt;/li&gt;
+  &lt;li&gt;So, how does $\mathbb{E}_{d}[v_{\pi_{\theta}}(S)]$ depend on $\theta$?&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -836,9 +828,9 @@ Note: The expectation if over the state distribution — e.g., induced by the po
 &lt;hr /&gt;
 &lt;ul&gt;
   &lt;li&gt;Given value function approximation $v_\theta(s) \approx v_\pi(s)$&lt;/li&gt;
-  &lt;li&gt;And &lt;strong&gt;experience&lt;/strong&gt; $\mathcal{D}$ consisting of $\large \langle \text{state, estimated value} \rangle$pairs&lt;br /&gt;
+  &lt;li&gt;And &lt;strong&gt;experience&lt;/strong&gt; $\mathcal{D}$ consisting of $\langle \text{state, estimated value} \rangle$pairs&lt;br /&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\mathcal{D}=\big\{\langle S_1,\hat{v}_1^\pi \rangle,\langle S_2,\hat{v}_2^\pi \rangle,\ldots,\langle S_T,\hat{v}_T^\pi \rangle \big\}&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;E.g., $\large \hat{V}&lt;em&gt;1^\pi=R&lt;/em&gt;{t+1}+\gamma v_\theta(S_{t+1})$&lt;/li&gt;
+  &lt;li&gt;E.g., $\hat{V}_1^\pi=R_{t+1}+\gamma v_\theta(S_{t+1})$&lt;/li&gt;
   &lt;li&gt;Which parameters $\theta$ give the best fitting value function $v_\theta(s)$?&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1055,7 +1047,7 @@ for all possible histories $S_{1},…,S_{t-1}$&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Estimating $v_{\pi}$ or $q_{\pi}$ is called &lt;strong&gt;policy evaluation&lt;/strong&gt; or, simply, &lt;strong&gt;prediction&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Estimating $v_{*}\space \text{or}\space  q_{*}$ is sometimes called &lt;strong&gt;control&lt;/strong&gt;, because these can be used for &lt;strong&gt;policy optimizaton&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Estimating $v_{\star}\space \text{or}\space q_{\star}$ is sometimes called &lt;strong&gt;control&lt;/strong&gt;, because these can be used for &lt;strong&gt;policy optimizaton&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -1078,7 +1070,7 @@ q_{*}(s,a) &amp;=\mathbb{E}[R_{t+1}+\gamma \max_{a^{'}} q_{*}(S_{t+1},a^{'})|S_{
   &lt;li&gt;Idea: turn this equality into an update&lt;/li&gt;
   &lt;li&gt;First, initialize $v_{0}$ e.g. to zero.&lt;/li&gt;
   &lt;li&gt;Then iterate&lt;br /&gt;
- &lt;script type=&quot;math/tex&quot;&gt;\forall s: v_{k+1}(s)=\mathbb{E}[R_{t+1}=\gamma v_{k}(S_{t+1})|s,\pi]&lt;/script&gt;&lt;/li&gt;
+ &lt;script type=&quot;math/tex&quot;&gt;\forall s: v_{k+1}(s)=\mathbb{E}[R_{t+1}+\gamma v_{k}(S_{t+1})|s,\pi]&lt;/script&gt;&lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Note: whenever $v_{k+1}(s)=v_{k}(s)$, for all $s$, we must have found $v_{\pi}$&lt;/p&gt;
   &lt;/li&gt;

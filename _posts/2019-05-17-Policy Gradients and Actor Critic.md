@@ -58,7 +58,7 @@ $$
 \nabla_{\theta}J(\theta)=\nabla\mathbb{E}_{d}[v_{\pi_{\theta}}(s)]
 $$
 - We will use Monte Carlo samples to compute this gradient
-- So, how does $\mathbb{E}_{d}[v_{\pi_{\theta}}(S)]$ depend on $\theta$?
+- So, how does $\mathbb{E}\_{d}[v\_{\pi\_{\theta}}(S)]$ depend on $\theta$?
 
 ---
 ### Policy Gradient Theorem

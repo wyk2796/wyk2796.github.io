@@ -10,11 +10,12 @@
 
 ---
 ### 2. What is a Model?
-- A model $\mathcal{M}_\eta$ is a representation of MDP $\langle \mathcal{S, A}, \hat{p}_\eta \rangle$
+- A model $\mathcal{M}\_{\eta}\space\text{is a representation of MDP}\space\langle\mathcal{S,A},\hat{p}\_{\eta}\rangle$
+- $\space\langle\mathcal{S, A},\hat{p}_\eta\rangle$
 - For now, we will assume the states and actions are the same as in the real problem
 - The model **approximates** the state transitions and rewards $\hat{p}_\eta\approx p$  
   $$  
-  R_{t+1}, S_{t+1} \sim \hat{p}_\eta (r, s'|S_t,A_t)
+  R_{t+1}, S_{t+1} \sim \hat{p}_{\eta} (r, s'|S_t,A_t)
   $$  
   (Note there is not probability distribution function)
 
@@ -34,7 +35,7 @@
 - Learn a function $f(s,a) = r,s'$
 - Pick loss function (e.g. mean-squared error), and find parameters $\eta$ that minimise empirical loss
 - This would give an expectation model
-- If $f(s,a)=r,s'$, then we would hope $s'\approx \mathbb{E}[S_{t+1}|s=S_t,a=A_t]$
+- If $f(s,a)=r,s'$, then we would hope $s'\approx \mathbb{E}[S_{t+1}\|s=S_t,a=A_t]$
 
 ---
 ### 4. Stochastic Model

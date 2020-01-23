@@ -79,7 +79,7 @@ for all possible histories $S_{1},...,S_{t-1}$
 #### Tips
 
 - Estimating $v_{\pi}$ or $q_{\pi}$ is called **policy evaluation** or, simply, **prediction**
-- Estimating $v_{\*}\space \text{or}\space  q_{\*}$ is sometimes called **control**, because these can be used for **policy optimizaton**.
+- Estimating $v_{\star}\space \text{or}\space q_{\star}$ is sometimes called **control**, because these can be used for **policy optimizaton**.
 
 ---
 ### Bellman Equation
@@ -104,7 +104,7 @@ $$
  - First, initialize $v_{0}$ e.g. to zero.
  - Then iterate  
     $$
-    \forall s: v_{k+1}(s)=\mathbb{E}[R_{t+1}=\gamma v_{k}(S_{t+1})|s,\pi]
+    \forall s: v_{k+1}(s)=\mathbb{E}[R_{t+1}+\gamma v_{k}(S_{t+1})|s,\pi]
     $$
 - Note: whenever $v_{k+1}(s)=v_{k}(s)$, for all $s$, we must have found $v_{\pi}$
 
