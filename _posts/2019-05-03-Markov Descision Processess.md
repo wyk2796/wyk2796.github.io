@@ -93,7 +93,8 @@ q_{*}(s,a) &=\mathbb{E}[R_{t+1}+\gamma \max_{a^{'}} q_{*}(S_{t+1},a^{'})|S_{t}=s
 \end{aligned}
 $$
  
- ---
+ ---  
+ 
  ### Policy Evaluate
  
  - We start by discussing how to estimate  
