@@ -24,20 +24,20 @@
   <link rel="icon" type="image/png" href="/assets/favicons/android-144x144.png" sizes="144x144">
   <link rel="icon" type="image/png" href="/assets/favicons/android-192x192.png" sizes="192x192">
 
-  <title>Tags Index</title>
-  <meta property="og:title" content="Tags Index" />
+  <title>Rnn&lstm</title>
+  <meta property="og:title" content="Rnn&lstm" />
   <meta property="og:description"
     content="" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="http://localhost:4000" />
 
-  <meta itemprop="name" content="Tags Index">
+  <meta itemprop="name" content="Rnn&lstm">
   <meta itemprop="description"
     content="">
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Tags Index" />
+  <meta name="twitter:title" content="Rnn&lstm" />
   <meta name="twitter:description"
     content="" />
 
@@ -158,8 +158,8 @@
           </div>
           <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
               <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-                  <a href="https://github.com/wyk2796/edit/master/pages/tags.html" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="https://github.com/wyk2796/issues/new?labels=question&title=Question:&body=Question on: https://github.com/wyk2796/tree/master/pages/tags.html" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+                  <a href="https://github.com/wyk2796/edit/master/_posts/2018-03-15-RNN&LSTM.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="https://github.com/wyk2796/issues/new?labels=question&title=Question:&body=Question on: https://github.com/wyk2796/tree/master/_posts/2018-03-15-RNN&LSTM.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="https://github.com/wyk2796/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 <!-- this will parse through the header fields and add a button to open
      an issue / ask a question on Github. The editable field should be in
@@ -176,40 +176,123 @@
             <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
 	      <ol class="breadcrumb spb-1">
                 <li class="breadcrumb-item active" aria-current="page">
-	          <a href="/tags/">Tags Index</a>
+	          <a href="/2018/RNN&LSTM/">Rnn&lstm</a>
                 </li>
 	      </ol>
            </nav>
            <div class="td-content">
-	      <h1 id="tags-index">Tags Index</h1>
+	      <h1 style="margin-bottom:0px">Rnn&lstm</h1>
 
+<span class="post-date" style="font-style: italic;">March 15, 2018</span>
+<h2 id="rnn--lstm">RNN &amp; LSTM</h2>
+<h2 id="recurrent-neural-networks-rnn">Recurrent Neural Networks (RNN)</h2>
+<ul>
+  <li>
+    <p><strong>What is RNN?</strong><br />
+RNN carries previous information and allow them to persist. It use loops in the networks to retain the information.</p>
 
-
-<h3 id="" class="linked-section"></h3>
-<div class="post-list" style="margin-bottom:40px">
-    
-</div><h3 id="github" class="linked-section">github</h3>
-<div class="post-list" style="margin-bottom:40px">
-    
-<div class="tag-entry">
-    <a href="/docs/getting-started">Getting Started</a>
-        <time style="font-style:italic; float:right" datetime="2020-02-04T21:22:26-05:00">February 04, 2020</time>
-    </div>
-</div><h3 id="jekyll" class="linked-section">jekyll</h3>
-<div class="post-list" style="margin-bottom:40px">
-    
-<div class="tag-entry">
-    <a href="/docs/getting-started">Getting Started</a>
-        <time style="font-style:italic; float:right" datetime="2020-02-04T21:22:26-05:00">February 04, 2020</time>
-    </div>
-</div><h3 id="survey" class="linked-section">survey</h3>
-<div class="post-list" style="margin-bottom:40px">
-    
-<div class="tag-entry">
-    <a href="/docs/extras/index">Extras</a>
-        <time style="font-style:italic; float:right" datetime="2020-02-04T21:22:26-05:00">February 04, 2020</time>
-    </div>
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-rolled.png" width="200px" /><br />
+<strong>Figure 1, RNN with loops</strong>
 </div>
+
+    <p>Network block A, input $x_i$ and output $h_t$, The loop can carry the information from one step to next.</p>
+  </li>
+</ul>
+
+<!--more-->
+
+<div align="center">
+  <img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" width="600px" /><br />
+  <strong>Figure 2, An unrolled recurrent neural network</strong>
+  </div>
+
+<p>The chain-like net  is vary suitable for sequence data. It usually used to construct language modeling, speech recognition and video feature extracting…, some RL models using RNN + LSTM to extract the latent information from several continuous video frames as the model inputs. In general, RNN uses loops to merge features of related data and passes these features as hidden states to next step to keep information in the networks. It allows the model to use the previous information to archive the present task, such as inferring the last word for a sentence by language model, understanding the present video frame by previous video frames.</p>
+<ul>
+  <li>Limitation
+If the network-chains is long, the network can’t keep initial information. The network is myopia.
+<br /></li>
+</ul>
+
+<h2 id="long-short-term-memory-networks-lstm">Long Short Term Memory networks (LSTM)</h2>
+<p>introduced by <a href="http://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter &amp; Schmidhuber</a> 1997</p>
+<ul>
+  <li><strong>What is LSTM ?</strong><br />
+LSTM is a special kind of RNN, having ability of learning lean-term dependencies. It is exactly designed to overcome the long-term dependency problem.</li>
+  <li><strong>Structure</strong><br />
+A standard RNN module have very simple structure, containing a single tanh layer.
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png" width="700px" /><br />
+<strong>Figure 3, The repeating module in a standard RNN contains a single layer</strong>
+</div>
+    <p>LSTM also have chain like structure, but the module is more complex than standard RNN</p>
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png" width="700px" /><br />
+<strong>Figure 4, The repeating module in an LSTM contains four interacting layers</strong>
+</div>
+  </li>
+  <li><strong>Idea</strong><br />
+Cell state $C_t$ run thought the top of the diagram. It like a conveyor belt, carrying information straight down the entire chain.
+    <div align="center">
+&lt;img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png" width=700px /&gt;<br />
+<strong>Figure 5, Cell State</strong>
+</div>
+
+    <p>Gate have the capable of removing or adding information to the cell state. It optionally let information go or block by a sigmoid layer and a element-wise multiplication operation.</p>
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-gate.png" width="100px" />
+<br />
+<strong>Figure 6, Gate</strong>
+</div>
+    <p>An LSTM module has three gates to protect and control the cell state.<br />
+<br /><br />
+The sigmoid layer decide what information we’re going to throw away from the cell state</p>
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png" width="700px" />
+<br />
+<strong>Figure 7, Forget gate layer</strong>
+</div>
+    <p>This layer decide what new information we’re going to store in the cell state.</p>
+
+    <ul>
+      <li>Sigmoid: decides which values we’ll update</li>
+      <li>tanh: creates a vector of new candidate values, $\hat{C}_t$, could be added to the state.</li>
+    </ul>
+
+    <p>Next, combine these two  to create an update to the state.</p>
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png" width="700px" />
+<br />
+<strong>Figure 8, Input gate layer</strong>
+</div>
+
+    <p>Update the old cell state, $C_{t-1}$ into the new cell state $C_t$.</p>
+
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png" width="700px" />
+<br />
+<strong>Figure 9, Update cell state</strong>
+</div>
+
+    <p>Output:</p>
+    <ul>
+      <li>Sigmoid layer decides what parts of the cell state are going to output</li>
+      <li>Cell state through $\tanh$ and multiply it by the output of the sigmoid gate</li>
+    </ul>
+
+    <div align="center">
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png" width="700px" />
+<br />
+<strong>Figure 10, Output hidden state</strong>
+</div>
+  </li>
+</ul>
+
+<h3 id="reference">Reference:</h3>
+<p>colah’s blog <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a>
+Hochreiter &amp; Schmidhuber, <a href="http://www.bioinf.jku.at/publications/older/2604.pdf">LONG SHORT-TERM MEMORY</a>, 1997</p>
+
+
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -259,7 +342,8 @@ $.each(headers, function(i, header){
 })
 </script>
 
-
+<script>
+$('h1').first().append('<div></div>')</script>
 
 	
               

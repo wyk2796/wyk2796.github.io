@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 22 Jan 2020 22:42:44 -0500</pubDate>
-    <lastBuildDate>Wed, 22 Jan 2020 22:42:44 -0500</lastBuildDate>
+    <pubDate>Tue, 04 Feb 2020 21:22:26 -0500</pubDate>
+    <lastBuildDate>Tue, 04 Feb 2020 21:22:26 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -1062,6 +1062,7 @@ q_{*}(s,a) &amp;=\mathbb{E}[R_{t+1}+\gamma \max_{a^{'}} q_{*}(S_{t+1},a^{'})|S_{
 \end{aligned} %]]&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
+
 &lt;p&gt;### Policy Evaluate&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1086,6 +1087,123 @@ q_{*}(s,a) &amp;=\mathbb{E}[R_{t+1}+\gamma \max_{a^{'}} q_{*}(S_{t+1},a^{'})|S_{
         <pubDate>Fri, 03 May 2019 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2019/Markov-Descision-Processess/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/Markov-Descision-Processess/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Rnn&amp;lstm</title>
+        <description>&lt;h2 id=&quot;rnn--lstm&quot;&gt;RNN &amp;amp; LSTM&lt;/h2&gt;
+&lt;h2 id=&quot;recurrent-neural-networks-rnn&quot;&gt;Recurrent Neural Networks (RNN)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;What is RNN?&lt;/strong&gt;&lt;br /&gt;
+RNN carries previous information and allow them to persist. It use loops in the networks to retain the information.&lt;/p&gt;
+
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-rolled.png&quot; width=&quot;200px&quot; /&gt;&lt;br /&gt;
+&lt;strong&gt;Figure 1, RNN with loops&lt;/strong&gt;
+&lt;/div&gt;
+
+    &lt;p&gt;Network block A, input $x_i$ and output $h_t$, The loop can carry the information from one step to next.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+  &lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png&quot; width=&quot;600px&quot; /&gt;&lt;br /&gt;
+  &lt;strong&gt;Figure 2, An unrolled recurrent neural network&lt;/strong&gt;
+  &lt;/div&gt;
+
+&lt;p&gt;The chain-like net  is vary suitable for sequence data. It usually used to construct language modeling, speech recognition and video feature extracting…, some RL models using RNN + LSTM to extract the latent information from several continuous video frames as the model inputs. In general, RNN uses loops to merge features of related data and passes these features as hidden states to next step to keep information in the networks. It allows the model to use the previous information to archive the present task, such as inferring the last word for a sentence by language model, understanding the present video frame by previous video frames.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Limitation
+If the network-chains is long, the network can’t keep initial information. The network is myopia.
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;long-short-term-memory-networks-lstm&quot;&gt;Long Short Term Memory networks (LSTM)&lt;/h2&gt;
+&lt;p&gt;introduced by &lt;a href=&quot;http://www.bioinf.jku.at/publications/older/2604.pdf&quot;&gt;Hochreiter &amp;amp; Schmidhuber&lt;/a&gt; 1997&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;What is LSTM ?&lt;/strong&gt;&lt;br /&gt;
+LSTM is a special kind of RNN, having ability of learning lean-term dependencies. It is exactly designed to overcome the long-term dependency problem.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Structure&lt;/strong&gt;&lt;br /&gt;
+A standard RNN module have very simple structure, containing a single tanh layer.
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png&quot; width=&quot;700px&quot; /&gt;&lt;br /&gt;
+&lt;strong&gt;Figure 3, The repeating module in a standard RNN contains a single layer&lt;/strong&gt;
+&lt;/div&gt;
+    &lt;p&gt;LSTM also have chain like structure, but the module is more complex than standard RNN&lt;/p&gt;
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png&quot; width=&quot;700px&quot; /&gt;&lt;br /&gt;
+&lt;strong&gt;Figure 4, The repeating module in an LSTM contains four interacting layers&lt;/strong&gt;
+&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Idea&lt;/strong&gt;&lt;br /&gt;
+Cell state $C_t$ run thought the top of the diagram. It like a conveyor belt, carrying information straight down the entire chain.
+    &lt;div align=&quot;center&quot;&gt;
+&amp;lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png&quot; width=700px /&amp;gt;&lt;br /&gt;
+&lt;strong&gt;Figure 5, Cell State&lt;/strong&gt;
+&lt;/div&gt;
+
+    &lt;p&gt;Gate have the capable of removing or adding information to the cell state. It optionally let information go or block by a sigmoid layer and a element-wise multiplication operation.&lt;/p&gt;
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-gate.png&quot; width=&quot;100px&quot; /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Figure 6, Gate&lt;/strong&gt;
+&lt;/div&gt;
+    &lt;p&gt;An LSTM module has three gates to protect and control the cell state.&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;
+The sigmoid layer decide what information we’re going to throw away from the cell state&lt;/p&gt;
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png&quot; width=&quot;700px&quot; /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Figure 7, Forget gate layer&lt;/strong&gt;
+&lt;/div&gt;
+    &lt;p&gt;This layer decide what new information we’re going to store in the cell state.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Sigmoid: decides which values we’ll update&lt;/li&gt;
+      &lt;li&gt;tanh: creates a vector of new candidate values, $\hat{C}_t$, could be added to the state.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;Next, combine these two  to create an update to the state.&lt;/p&gt;
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png&quot; width=&quot;700px&quot; /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Figure 8, Input gate layer&lt;/strong&gt;
+&lt;/div&gt;
+
+    &lt;p&gt;Update the old cell state, $C_{t-1}$ into the new cell state $C_t$.&lt;/p&gt;
+
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png&quot; width=&quot;700px&quot; /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Figure 9, Update cell state&lt;/strong&gt;
+&lt;/div&gt;
+
+    &lt;p&gt;Output:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Sigmoid layer decides what parts of the cell state are going to output&lt;/li&gt;
+      &lt;li&gt;Cell state through $\tanh$ and multiply it by the output of the sigmoid gate&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png&quot; width=&quot;700px&quot; /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Figure 10, Output hidden state&lt;/strong&gt;
+&lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;reference&quot;&gt;Reference:&lt;/h3&gt;
+&lt;p&gt;colah’s blog &lt;a href=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/&quot;&gt;Understanding LSTM Networks&lt;/a&gt;
+Hochreiter &amp;amp; Schmidhuber, &lt;a href=&quot;http://www.bioinf.jku.at/publications/older/2604.pdf&quot;&gt;LONG SHORT-TERM MEMORY&lt;/a&gt;, 1997&lt;/p&gt;
+</description>
+        <pubDate>Thu, 15 Mar 2018 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2018/RNN&LSTM/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/RNN&LSTM/</guid>
         
         
       </item>

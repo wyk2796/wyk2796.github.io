@@ -8,7 +8,7 @@ email: ywu048@fiu.edu
 call: 7866083426
 
 ### EDUCATION
-- 2009.09—2013.07 AnQing Normal University (bachelor degree), major Information and Computing Science 
+- 2009.09—2013.07 AnQing Normal University (bachelor degree), major Computing & Info Science 
 - 2018.05—2019.12 Florida International University (master degree), major computer science 
 
 ### PROFESSIONAL EXPERIENCE
@@ -31,21 +31,27 @@ call: 7866083426
   Help our customer to build a ML model to predict whether the user would lost or not in the next mouth. The Telecom company gives me lots of user behavior data without sensitive part. The label is binary, meaning whether the user would lost in next month. I use previous four-month data to extract the user’s features, and then input the features into model to predict the user's situation in next month. In this project, I try many ML models and finally decide to use Random Forest that can reach the best precision and recall.   
  
 ### RESEARCH / PROJECT EXPERIENCE DURING UNIVERSITY 
-- 2019 **Reinforcemen2019 : (Git-Repo) :
-t Learning Project:** ([Git-Repo](https://github.com/wyk2796/reinforcement_learning)) **:**
+- 2019 **Reinforcement Learning Project:** ([Git-Repo](https://github.com/wyk2796/reinforcement_learning)) **:**
   - **Navigation**: Training an agent to learn how to get maximum bananas in one episode,  using the Deep Q-Network(DQN) Algorithm. 
   - **Reacher**: Training a robot arm to quickly catch a target object. In this project, I use the Deep Deterministic Policy Gradient(DDPG) with continuous action space to train 20 virtual agents simultaneously to reduce the training time.  
   - **Tennis**: Two players compete with each other. The project is training two agents to play the tennis game. I use the DDPG to train multi-agents in competitive environment.
   - **Half Field Offense in [Robocup 2D Soccer](https://github.com/LARG/HFO)**: Training an agent to kick the ball to the goal. This environment action space is parameterized action space which combines the discrete value and the continuous value. 
+<br>
 
 - 2018 **NLP Project** ([Git-Repo](https://github.com/wyk2796/NLP_learning), [Paper](https://github.com/wyk2796/NLP_learning/blob/master/doc/ner.pdf)) **:**
 We use four kinds of algorithms to complete Name Entity Recognition(NER) task and compare them. 
 
-- 2019 **Image Process** ([Git-Repo](https://github.com/wyk2796/image_processes_style_transform), [Report](https://github.com/wyk2796/image_processes_style_transform/blob/master/The%20visualization%20of%20Deep%20Neural%20Network.pdf)) **:**
+<br>
+
+- 2019 **The Visualization of Transferring Processes of Image Style Transfer** ([Git-Repo](https://github.com/wyk2796/image_processes_style_transform), [Report](https://github.com/wyk2796/image_processes_style_transform/blob/master/The%20visualization%20of%20Deep%20Neural%20Network.pdf)) **:**
 For this project, My target is to display the intermediate processes of image-style transformation, how to transform a photo from a original photo to a style photo and what the processes look like. I use VGG19 and transform-net (Johnson, J. et al. 2016) to train model for image-style transformation. In each layer of transform-net, I use DeconvNet to get visible image from intermediate data to display the changing process. 
 
+<br>
+
 - 2019 **Distributed Framework:**
-It is a distributed system framework and has a master and various plumbable components. The plumbable components can be designed to divers function components. The master manages all components. The system has a pub-sub system to support communication between all components. The component can publish and subscribe topics. This project is based on AKKA concurrency framework with Scala programm language. Here is a Distributed Web Crawler based on this distributed framework,  **"crawlnet"** ([Git-Repo](https://github.com/wyk2796/crawlnet)).
+It is a distributed system framework and has a master and various plumbable components. The plumbable components can be designed to divers function components. The master manages all components. The system has a pub-sub system to support communication between all components. The component can publish and subscribe topics. This project is based on AKKA concurrency framework with Scala programm language. Here is a Distributed Web Crawler based on this distributed framework,  **"crawlnet"** ([Git-Repo](https://github.com/wyk2796/crawlnet)).  
+
+<br>  
 
 - 2015 **Recommendation System** ([Git-Repo](https://github.com/wyk2796/recommender)) **:**
 The project target is to design and develop a recommendation system to recommend commodity for users. The architecture of the project includes four parts. I use Hive as my data warehouse that stores all order, user and commodities data. I use Spark to generate recommendation models and use them to recommend commodities and store the result into Hbase database. And then we design restful API to receive requests and return the recommendation commodities for users. 
