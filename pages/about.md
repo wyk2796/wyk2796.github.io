@@ -14,7 +14,7 @@ call: 7866083426
 ### PROFESSIONAL EXPERIENCE
 - ##### 2015.9 – 2018.1   HangZhou ShuYun Information Science Corporation (Algorithm Engineer)
   - **Design and Development of Recommendation System for commodities**
-    The company started to develop a framework for Recommendation System which can train model from users features data and generates a list of recommendation commodities. In this project, My duty is to develop a back-end part that can get data from several recommendation lists and merge them by specific algorithm, finally push them to user end. I’m also in charge with developing some recommendation algorithms for some particular scenarios.  This recommendation framework mainly serves the advertising business.
+    The company started to develop a framework for Recommendation System which can train model from users features data and generates a list of recommendation commodities. In this project, My duty is to develop a back-end part that can get data from several recommendation lists and merge them by specific algorithm, and then push them to user end. I’m also in charge with developing some recommendation algorithms for some particular scenarios.  This recommendation framework mainly serves the advertising business.
   - **Design and Development of TaoBao, TMall User Portrait System**  
     Depending on user shopping records, I establish a label system, representing user feature space, for all of them, such as Preference for Clothes, Preference for Cosmetics, Preference for Food etc. It is advantageous to divide group users into several categories and improve the precise of recommendation system.  
   - **Analysis user comment data with NLP**  
@@ -22,16 +22,17 @@ call: 7866083426
 
 - ##### 2015.6 – 2015.8	   ShangHai YiChen Information Science Corporation (Big Data Development Engineer)
   -  **Design and Development of Recommendation System for short videos**  
-  The company started to establish recommendation system. what I do is storing user’s history data in Hive, training the Recommendation Models with Spark and storing those models in HDFS. I develop a framework that automatically deploys the trained models that had been loaded in HDFS. Recommending short videos for users and putting the results into Hbase are my next work. The frame has RESTful API for responding the request from other front-end programme.     
+  The company need to establish recommendation system for short videos. My work is to design and develop recommendation system. My design is to store user’s history data with Hive, train the Recommendation Models with Spark and storing those models in HDFS, use these models to generate recommendation sets and save them into Hbase, and has a service process that gets data from Hbase and responses the recommendation requests. I develop a framework that automatically deploys the trained models in HDFS and control the version of these models. The framework uses RESTful API to respond requests from other front-end programme.    
 
 - ##### 2014.5 – 2015.5	    ANHUI XiangXing Information Science Corporation (Data Mining Engineer)
   - **Development of Data Mining System Based on Spark Framework**  
-  The company wants to create a cloud computing platform for the enterprise that is beneficial for them to analyse huge amount of data. Therefore, my task is to integrate Spark into this System and extend the function and algorithm of MLlib. 
+  The company creates a cloud computing platform for enterprise customers that helps companies analyze large amounts of business data. Therefore, my tasks is to integrate Spark into this System and extend the function and algorithm. 
   - **Data Modeling of Customer Loss with Anhui Telecom User Data**  
-  Help our customer to build a ML model to predict whether the user would lost or not in the next mouth.  The Telecom company gives me lots of user behavior data without sensitive part.  The label is binary, meaning whether the user would lost in next month. I use previous four-month data to extract the user’s feature, and then input the features into model to predict the user's situation in next month.
+  Help our customer to build a ML model to predict whether the user would lost or not in the next mouth. The Telecom company gives me lots of user behavior data without sensitive part. The label is binary, meaning whether the user would lost in next month. I use previous four-month data to extract the user’s features, and then input the features into model to predict the user's situation in next month. In this project, I try many ML models and finally decide to use Random Forest that can reach the best precision and recall.   
  
-### RESEARCH / PROJECT EXPERIENCE
-- 2019 **Reinforcement Learning Project:** ([Git-Repo](https://github.com/wyk2796/reinforcement_learning)) **:**
+### RESEARCH / PROJECT EXPERIENCE DURING UNIVERSITY 
+- 2019 **Reinforcemen2019 : (Git-Repo) :
+t Learning Project:** ([Git-Repo](https://github.com/wyk2796/reinforcement_learning)) **:**
   - **Navigation**: Training an agent to learn how to get maximum bananas in one episode,  using the Deep Q-Network(DQN) Algorithm. 
   - **Reacher**: Training a robot arm to quickly catch a target object. In this project, I use the Deep Deterministic Policy Gradient(DDPG) with continuous action space to train 20 virtual agents simultaneously to reduce the training time.  
   - **Tennis**: Two players compete with each other. The project is training two agents to play the tennis game. I use the DDPG to train multi-agents in competitive environment.
@@ -47,7 +48,7 @@ For this project, My target is to display the intermediate processes of image-st
 It is a distributed system framework and has a master and various plumbable components. The plumbable components can be designed to divers function components. The master manages all components. The system has a pub-sub system to support communication between all components. The component can publish and subscribe topics. This project is based on AKKA concurrency framework with Scala programm language. Here is a Distributed Web Crawler based on this distributed framework,  **"crawlnet"** ([Git-Repo](https://github.com/wyk2796/crawlnet)).
 
 - 2015 **Recommendation System** ([Git-Repo](https://github.com/wyk2796/recommender)) **:**
-The project target is to design and develop a recommendation system to recommend commodity for users. The architecture of the project includes four parts. I use Hive as my data warehouse that stores all orders data, user and commodities data. I use Spark to generate models used to recommend commodities and store the result into Hbase database. And then we design restful API to receive requests and return the recommendation commodities for users. The algorithm I use in this project is user-item interactions matrix, Collaborative filtering, and TF-IDF etc. 
+The project target is to design and develop a recommendation system to recommend commodity for users. The architecture of the project includes four parts. I use Hive as my data warehouse that stores all order, user and commodities data. I use Spark to generate recommendation models and use them to recommend commodities and store the result into Hbase database. And then we design restful API to receive requests and return the recommendation commodities for users. 
 
 ### PROFESSIONAL SKILLS
 - **Deep learning** development skills:
